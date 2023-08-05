@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GreetingController;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
@@ -21,12 +22,12 @@ Route::get('/', function () {
 })->name('login');
 
 Route::get('/login', function () {
-    return view('login');
+    return view('auth.login');
 })->name('login');
 
 // Route Register
 Route::get('/register', function () {
-    return view('register');
+    return view('auth.register');
 })->name('register');
 
 // Route Dashboard

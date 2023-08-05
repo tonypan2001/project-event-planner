@@ -11,11 +11,13 @@ module.exports = {
       colors: {
         'mypink': {
           light: '#f00082',
-          dark: '#d70074'
+          dark: '#d70074',
+          lightest: '#F49ECD',
         },
         'mypurple': {
           light: '#7000ff',
-          dark: '#6900ee'
+          dark: '#6900ee',
+          lightest: '#C89DFF',
         }
       }
     }
