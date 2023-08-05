@@ -33,7 +33,7 @@
                             <p class="text-sm text-red-500">Your email or password is incorrect. Please try again.</p>
                         </div>
                         <div class="mt-5">
-                            <a href="{{route('dashboard')}}" class="bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 mt-4 rounded-full cursor-pointer">Sign In</a>
+                            <a href="{{route('dashboard.index')}}" class="bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 mt-4 rounded-full cursor-pointer">Sign In</a>
                             <!-- <a href="#" class="text-gray-600 ml-8 text-xs">FORGET PASSWORD?</a> -->
                         </div>
                     </div>
