@@ -3,6 +3,8 @@
 use App\Http\Controllers\CreateEventController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +23,7 @@ Route::get('/', function () {
     return view('auth.login');
 })->name('login');
 
-Route::get('/login', function () {
+Route::get('/signin', function () {
     return view('auth.login');
 })->name('login');
 
@@ -36,3 +38,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/event', [EventController::class, 'index'])->name('event.index');
 
 Route::get('/create-event', [EventController::class, 'create'])->name('event.create');
+
+Route::get('/notification', [NotificationController::class, 'index'])->name('notification.index');
+
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');

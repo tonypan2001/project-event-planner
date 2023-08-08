@@ -5,7 +5,7 @@
             <div class="border-b border-gray-400 mt-4"></div>
             <div class="mx-6 my-4 flex flex-col">
                 <div>
-                    <p class="text-dakr">Upcoming Event</p>
+                    <p class="text-dark">Upcoming Event</p>
                 </div>
                 <div class="flex flex-row mt-4">
                     <div class="w-2/3 mx-2">

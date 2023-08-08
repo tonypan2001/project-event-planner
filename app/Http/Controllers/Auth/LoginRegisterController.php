@@ -20,8 +20,17 @@ class LoginRegisterController extends Controller
         return view('auth.register');
     }
 
+    public function login() {
+        return view('auth.login');
+    }
+
     // Store a new user
     public function store(Request $request) {
-        
+        $request->validate([
+            'title' => ['required', 'string', 'min:4', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'max:255']
+        ]);
+
+        return redirect()->route('dashboard.index');
     }
 }

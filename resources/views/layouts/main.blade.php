@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Event Planner</title>
     @vite(['resources/css/app.css','resources/js/app.js'])
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.0/datepicker.min.js"></script>
 </head>
 <body>
     <div class="flex">
         <!-- SIDEBAR -->
-        <div class="px-5 pt-4 w-1/4 rounded-r-lg" style="background: rgb(150,1,218);
+        <div class="px-5 pt-4 w-1/4" style="background: rgb(150,1,218);
         background: linear-gradient(130deg, rgba(150,1,218,1) 0%, rgba(112,0,255,1) 50%, rgba(112,0,255,1) 100%);">
             <div class="flex justify-end">
                 <a href="" class="text-white hover:text-mypink-light">
@@ -25,19 +26,19 @@
                 <p class="text-base font-normal">Robert Downey Jr.</p>
                 <div class="border-b border-white w-40 mt-4 mb-3"></div>
                 <!-- NAVIGATE BUTTON -->
-                <a href="" class="flex flex-row justify-center items-center mt-4 p-2 font-mediu border border-2 rounded-full w-full hover:border-mypink-light hover:text-mypink-light">
+                <a href="{{route('notification.index')}}" class="flex flex-row justify-center items-center mt-4 p-2 font-mediu border border-2 rounded-full w-full hover:border-mypink-light hover:text-mypink-light">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
                         <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"/>
                     </svg>
                     <p class="mx-2">Notifications</p>
                 </a>
-                <a href="" class="flex flex-row justify-center items-center mt-4 p-2 font-mediu border border-2 rounded-full w-full hover:border-mypink-light hover:text-mypink-light">
+                <a href="{{route('dashboard.index')}}" class="flex flex-row justify-center items-center mt-4 p-2 font-mediu border border-2 rounded-full w-full hover:border-mypink-light hover:text-mypink-light">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-microsoft" viewBox="0 0 16 16">
                         <path d="M7.462 0H0v7.19h7.462V0zM16 0H8.538v7.19H16V0zM7.462 8.211H0V16h7.462V8.211zm8.538 0H8.538V16H16V8.211z"/>
                     </svg>
                     <p class="mx-2">Dashboard</p>
                 </a>
-                <a href="" class="flex flex-row justify-center items-center mt-4 p-2 font-mediu border border-2 rounded-full w-full hover:border-mypink-light hover:text-mypink-light">
+                <a href="{{route('gallery.index')}}" class="flex flex-row justify-center items-center mt-4 p-2 font-mediu border border-2 rounded-full w-full hover:border-mypink-light hover:text-mypink-light">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
                         <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
                         <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2zM14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1zM2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1h-10z"/>

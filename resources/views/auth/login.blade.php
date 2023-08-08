@@ -25,13 +25,18 @@
                         <p class="mb-4 text-gray-600">Please sign in to continue</p>
                         <form action="#">
                             <div>
-                                <input type="text" placeholder="Enter username or email" class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
-                                <input type="text" placeholder="Enter password" class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
+                                <input type="text" placeholder="Enter username or email" value="{{old('title', '')}}" class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
+                                <input type="password" placeholder="Enter password" value="{{old('password', '')}}" class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
                             </div>
                         </form>
-                        <div class="my-2">
-                            <p class="text-sm text-red-500">Your email or password is incorrect. Please try again.</p>
-                        </div>
+                        <!-- ERROR MESSAGE -->
+                        @error('title')
+                            <div>
+                                <p class="text-red-400">
+                                    {{$message}}
+                                </p>
+                            </div>
+                        @enderror
                         <div class="mt-5">
                             <a href="{{route('dashboard.index')}}" class="bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 mt-4 rounded-full cursor-pointer">Sign In</a>
                             <!-- <a href="#" class="text-gray-600 ml-8 text-xs">FORGET PASSWORD?</a> -->
