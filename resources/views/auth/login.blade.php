@@ -8,9 +8,10 @@
     @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
 <body>
-    <div class="min-h-screen py-40">
-        <div class="container mx-auto bg-white">
-            <div class="flex flex-col w-8/12 bg-white rounded-x1 mx-auto shadow-2xl overflow-hidden rounded-lg">
+    <div class="min-h-screen">
+        <div class="container mx-auto h-screen flex items-center justify-center" style="background: rgb(150,1,218);
+        background: linear-gradient(130deg, rgba(150,1,218,1) 0%, rgba(112,0,255,1) 50%, rgba(112,0,255,1) 100%);">
+            <div class="flex flex-col w-9/12 bg-white mx-auto shadow-2xl rounded-lg">
                 <div class="flex centent-center justify-between mt-10">
                     <p class="w-full text-2xl font-bold text-center"> <span class="text-mypink-dark">E</span>vent <span class="text-mypurple-dark">P</span>lanner</p>
                     <div class="w-full"></div>
@@ -24,13 +25,21 @@
                         <p class="mb-4 text-gray-600">Please sign in to continue</p>
                         <form action="#">
                             <div>
-                                <input type="text" placeholder="Enter username or email" class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
-                                <input type="text" placeholder="Enter password" class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
+                                <input type="text" placeholder="Enter username or email" value="{{old('title', '')}}" class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
+                                <input type="password" placeholder="Enter password" value="{{old('password', '')}}" class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
                             </div>
                         </form>
+                        <!-- ERROR MESSAGE -->
+                        @error('title')
+                            <div>
+                                <p class="text-red-400">
+                                    {{$message}}
+                                </p>
+                            </div>
+                        @enderror
                         <div class="mt-5">
-                            <a href="{{route('dashboard')}}" class="bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 mt-4 rounded-full cursor-pointer">Sign In</a>
-                            <a href="#" class="text-gray-600 ml-8 text-xs">FORGET PASSWORD?</a>
+                            <a href="{{route('dashboard.index')}}" class="bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 mt-4 rounded-full cursor-pointer">Sign In</a>
+                            <!-- <a href="#" class="text-gray-600 ml-8 text-xs">FORGET PASSWORD?</a> -->
                         </div>
                     </div>
                 </div>
