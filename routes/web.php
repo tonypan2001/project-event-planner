@@ -42,3 +42,5 @@ Route::get('/create-event', [EventController::class, 'create'])->name('event.cre
 Route::get('/notification', [NotificationController::class, 'index'])->name('notification.index');
 
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+
+Route::get('/event/manage', [EventController::class, 'manager'])->name('event.manage');
