@@ -35,12 +35,15 @@ Route::get('/register', function () {
 // Route Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-Route::get('/event', [EventController::class, 'index'])->name('event.index');
-
-Route::get('/create-event', [EventController::class, 'create'])->name('event.create');
-
 Route::get('/notification', [NotificationController::class, 'index'])->name('notification.index');
 
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
 
+// Event
+Route::get('/event', [EventController::class, 'index'])->name('event.index');
+Route::get('/create-event', [EventController::class, 'create'])->name('event.create');
 Route::get('/event/manage', [EventController::class, 'manager'])->name('event.manage');
+Route::get('/event/edit', [EventController::class, 'edit'])->name('event.edit');
+Route::get('/event/manage/edit/budget', [EventController::class, 'editBudget'])->name('event.editBudget');
+Route::get('/event/manage/edit/worker', [EventController::class, 'editWorker'])->name('event.editWorker');
+Route::get('/event/whiteboard', [EventController::class, 'whiteboard'])->name('event.whiteboard');

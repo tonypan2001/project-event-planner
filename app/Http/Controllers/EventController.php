@@ -17,4 +17,20 @@ class EventController extends Controller
     public function manager() {
         return view('event.manage');
     }
+
+    public function edit() {
+        return view('event.edit');
+    }
+
+    public function editBudget() {
+        return view('event.editBudget');
+    }
+
+    public function editWorker() {
+        return view('event.editWorker');
+    }
+
+    public function whiteboard() {
+        return view('event.whiteboard');
+    }
 }
