@@ -7,7 +7,7 @@
     <div class="mx-6 my-4 flex flex-col">
         <!-- INSERT HERE!!! -->
 
-        
+
         <div id="default-carousel" class="relative w-full" data-carousel="slide">
           <!-- Carousel wrapper -->
           <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
@@ -59,11 +59,11 @@
           </div>
         </div>
 
-        <div class="flex content-center justify-between w-full mb-5 mx-6 mt-5">
-            <a href="{{route('dashboard.index')}}" class="w-full">< Back</a>
-            <button class="w-full bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 rounded-full">Join Event</button>
-            <div class="w-full"></div>
+        <div class="grid grid-cols-3 gap-4 content-center w-full mb-5 mx-6 mt-5">
+            <a href="{{ route('dashboard.index') }}" class="col-span-1 justify-self-start">< Back</a>
+            <button class="col-span-1 bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 rounded-full">Join Event</button>
+            <a href="{{ route('event.manage') }}" class="col-span-1 justify-self-end">Edit ></a>
         </div>
     </div>
-</div> 
+</div>
 @endsection
