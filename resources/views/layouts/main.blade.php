@@ -19,7 +19,7 @@
                 </svg>
             </button>
 {{--             Real SIDEBAR --}}
-            <div id="sidebar" class="flex h-screen left-auto px-5 pt-4 fixed top-0 transform duration-300" style="background: rgb(150,1,218);
+            <div id="sidebar" class="flex h-screen left-auto px-12 pt-4 fixed top-0 transform duration-300" style="background: rgb(150,1,218);
                     background: linear-gradient(130deg, rgba(150,1,218,1) 0%, rgba(112,0,255,1) 50%, rgba(112,0,255,1) 100%);">
                 <div class="flex flex-col justify-up items-center text-center text-white mt-12">
                     <h1 class="uppercase font-medium">My Account</h1>
@@ -99,7 +99,7 @@
         function updateSidebarState() {
             if (sidebarOpen) {
                 sidebar.style.transform = 'translateX(0)';
-                mainContent.style.marginLeft = '11rem'; // !!adjust SIDEBAR here if changed!!
+                mainContent.style.marginLeft = '16rem'; // !!adjust SIDEBAR here if changed!!
             } else {
                 sidebar.style.transform = 'translateX(-100%)';
                 mainContent.style.marginLeft = '0';
