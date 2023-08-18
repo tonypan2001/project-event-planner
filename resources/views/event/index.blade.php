@@ -54,7 +54,8 @@
         <div class="grid grid-cols-1 my-5">
             <div class="flex flex-row justify-center items-center py-2 my-2">
                 <h1 class="text-4xl font-bold text-center w-2/3">Jogging Event</h1>
-                <div class="flex justify-end items-center w-1/3">
+                <!-- Manage Button -->
+                {{-- <div class="flex justify-end items-center border w-1/3">
                     <a class="flex justify-center items-center w-32 bg-white border border-2 border-mypurple-light hover:border-mypurple-dark text-mypurple-light hover:text-mypurple-dark text-center cursor-pointer font-bold py-2 px-4 rounded-full">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
                             <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
@@ -64,7 +65,7 @@
                               Manage
                           </p>
                     </a>
-                </div>
+                </div> --}}
             </div>
 
             <div class="grid grid-rows gap-6 mx-4">
