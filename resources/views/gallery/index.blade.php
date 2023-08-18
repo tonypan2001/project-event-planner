@@ -15,7 +15,7 @@
                 <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                     Attach a file
                 </p>
-                <input type="file" class="opacity-0">
+                {{-- <input type="file" class="opacity-0"> --}}
             </div>
             <button class="w-full mt-3 px-4 py-2 text-white bg-mypink-light hover:bg-mypink-dark rounded shadow-xl">Upload File</button>
         </div>

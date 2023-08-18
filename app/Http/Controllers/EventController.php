@@ -30,7 +30,7 @@ class EventController extends Controller
         return view('event.editWorker');
     }
 
-    public function whiteboard() {
-        return view('event.whiteboard');
-    }
+    // public function whiteboard() {
+    //     return view('event.whiteboard');
+    // }
 }
