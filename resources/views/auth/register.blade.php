@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="min-h-screen">
-        <div class="container mx-auto h-full flex justify-center items-center" style="background: rgb(150,1,218);
+        <div class="w-full mx-auto h-full flex justify-center items-center" style="background: rgb(150,1,218);
         background: linear-gradient(130deg, rgba(150,1,218,1) 0%, rgba(112,0,255,1) 50%, rgba(112,0,255,1) 100%);">
             <div class="flex flex-col w-8/12 bg-white mt-16 mb-16 mx-auto shadow-2xl overflow-hidden rounded-lg">
                 <div class="flex centent-center justify-between mt-10">

@@ -7,7 +7,7 @@
     <div class="mx-6 my-4 flex flex-col">
         <!-- INSERT HERE!!! -->
 
-        
+
         <div id="default-carousel" class="relative w-full" data-carousel="slide">
           <!-- Carousel wrapper -->
           <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
@@ -54,7 +54,8 @@
         <div class="grid grid-cols-1 my-5">
             <div class="flex flex-row justify-center items-center py-2 my-2">
                 <h1 class="text-4xl font-bold text-center w-2/3">Jogging Event</h1>
-                <div class="flex justify-end items-center w-1/3">
+                <!-- Manage Button -->
+                {{-- <div class="flex justify-end items-center border w-1/3">
                     <a class="flex justify-center items-center w-32 bg-white border border-2 border-mypurple-light hover:border-mypurple-dark text-mypurple-light hover:text-mypurple-dark text-center cursor-pointer font-bold py-2 px-4 rounded-full">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
                             <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
@@ -64,7 +65,7 @@
                               Manage
                           </p>
                     </a>
-                </div>
+                </div> --}}
             </div>
 
             <div class="grid grid-rows gap-6 mx-4">
@@ -79,27 +80,11 @@
             </div>
         </div>
 
-        <div class="border-b border-gray-400 mt-6"></div>
-
-        <div class="flex content-center justify-between w-full mb-5 mx-6 mt-5 p-4">
-            <div class="w-2/3 flex justify-center items-center">
-                <a href="{{route('dashboard.index')}}" class="w-full">< Back</a>
-            </div>
-            <div class="w-1/3 flex justify-center items-center">
-                <a class="w-full bg-mypink-light hover:bg-mypink-dark text-white text-center cursor-pointer font-bold py-2 px-10 rounded-full">Join Event</a>
-            </div>
-            <div class="w-1/4 flex justify-center items-center">
-                <a class="flex justify-center items-center w-32 bg-white border border-2 border-mypink-light hover:border-mypink-dark text-mypink-light hover:text-mypink-dark text-center cursor-pointer font-bold py-2 px-4 rounded-full">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                      </svg>
-                      <p class="mx-2">
-                          Kanban
-                      </p>
-                </a>
-            </div>
+        <div class="grid grid-cols-3 gap-4 content-center w-full mb-5 mx-6 mt-5">
+            <a href="{{ route('dashboard.index') }}" class="col-span-1 justify-self-start">< Back</a>
+            <button class="col-span-1 bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 rounded-full">Join Event</button>
+            <a href="{{ route('event.manage') }}" class="col-span-1 justify-self-end">Edit ></a>
         </div>
     </div>
-</div> 
+</div>
 @endsection
