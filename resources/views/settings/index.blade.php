@@ -19,7 +19,7 @@
                     <button class="col-span-1 bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 rounded-full">Edit Picture</button>
                 </div>
             </div>
-            <form action="" class="w-full flex flex-col items-center justify-center">
+            <!-- <form action="" class="w-full flex flex-col items-center justify-center">
                 <div class="w-2/4">
                     <p>Your Name</p>
                     <input type="text" class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
@@ -43,18 +43,51 @@
                 <div class="mt-4">
                     <button class="col-span-1 bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 rounded-full">Save Changes</button>
                 </div>
-            </form>
-            <form action="{{ route('settings.update',[Auth::user()->id]) }}" method="POST">
+            </form> -->
+            <form action="{{ route('settings.update',['user'=>$user]) }}" class ="w-full flex flex-col items-center justify-center" method="POST">
                 @csrf
                 @method('PUT')
-                <div class="mb-5">
-                    <label for="fullname" class="block mb-2 font-bold text-gray-600">Artist Name</label>
+                <!-- fullname -->
+                <div class="w-2/4">
+                    <label for="fullname" >Fullname</label>
                     <input type="text" id="fullname" name="fullname" autocomplete = "off" 
+                    class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2"
                     value="{{$user->fullname}}"
+                    placeholder="Put in fullname" >
+                </div>
+                <!-- username -->
+                <input type="hidden" name="username" value="{{ $user->username }}"
+                >
+                <!-- email -->
+                <div class="mb-5">
+                    <label for="email" class="block mb-2 font-bold text-gray-600"></label>
+                    <input type="hidden" id="email" name="email" autocomplete = "off" 
+                    value="{{$user->email}}"
+                    placeholder="Put in email" class="border border-gray-300 shadow p-3 w-full rounded mb-">
+                </div>
+                <!-- phone_num -->
+                <div class="w-2/4">
+                    <label for="phone_num" >Phone number</label>
+                    <input type="text" id="phone_num" name="phone_num" autocomplete = "off" 
+                    value="{{$user->phone_num}}"
+                    placeholder="Put in phone_num" class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
+                </div>
+                <!-- age -->
+                <div class="mb-5">
+                    <label for="age" class="block mb-2 font-bold text-gray-600"></label>
+                    <input type="hidden" id="age" name="age" autocomplete = "off" 
+                    value="{{$user->age}}"
+                    placeholder="Put in age" class="border border-gray-300 shadow p-3 w-full rounded mb-">
+                </div>
+                <!-- oldpassword -->
+                <div class="mb-5">
+                    <label for="password" class="block mb-2 font-bold text-gray-600"></label>
+                    <input type="hidden" id="password" name="password" autocomplete = "off" 
+                    value="{{$user->password}}"
                     placeholder="Put in artist name" class="border border-gray-300 shadow p-3 w-full rounded mb-">
                 </div>
 
-                <button type="submit" class="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg">Submit</button>
+                <button type="submit" class="col-span-1 bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 rounded-full">Submit</button>
             </form>
         </div>
 

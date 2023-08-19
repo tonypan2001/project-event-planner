@@ -22,7 +22,12 @@ class SettingsController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $user->fullname = $request->get('fullname');
+        $user->fullname = $request->get('fullname');        
+        $user->username = $request->get('username');
+        $user->age = $request->get('age');
+        $user->email = $request->get('email');
+        $user->phone_num = $request->get('phone_num');
+        $user->password = $request->get('password');
         $user->save();
         return redirect()->route('dashboard.index',['user'=>$user]);
     }
