@@ -9,4 +9,8 @@ class Whiteboard extends Model
 {
     use HasFactory;
     protected $fillable = ['content', 'detail'];
+
+    public function event() {
+        return $this->belongsTo(Event::class);
+    }
 }

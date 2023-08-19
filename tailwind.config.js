@@ -22,6 +22,11 @@ module.exports = {
       }
     }
   },
+  variants: {
+    extend: {
+      display: ['group-focus']
+    },
+  },
   plugins: [
       require('flowbite/plugin')
   ],

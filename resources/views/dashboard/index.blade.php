@@ -83,89 +83,50 @@
                 </div>
 
                 <div class="my-2 py-2 w-full">
-                  <a href="{{route('event.create')}}" class="bg-mypink-light hover:bg-mypink-dark rounded-full p-2 px-4 font-bold text-white">
+                  <a href="{{route('event.createEvent')}}" class="bg-mypink-light hover:bg-mypink-dark rounded-full p-2 px-4 font-bold text-white">
                     + Create New Event
                   </a>
                 </div>
 
+                <form method="POST" action="">
+                  @csrf
+                  @if ($events && count($events) > 0)
+                    @foreach ($events as $event)
+                    <div class="w-full shadow-xl bg-white rounded-xl my-1">
+                      <div class="p-2 flex flex-row">
+                        <div class="h-32 w-full rounded-lg shadow-xl m-5" style="background-image: url('https://images.unsplash.com/photo-1607962837359-5e7e89f86776?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'); background-repeat: no-repeat; background-size: cover;"></div>
+                        <div class="w-full m-5">
+                          <h1 class="text-xl"> {{$event->name}} </h1>
+                          <p class="text-sm text-gray-600">By Thomas Adison</p>
+                          <div class="my-5 flex flex-row items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+                              <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg>
+                            <div>
+                              <p class="mx-3 font-normal">{{$event->date}} - {{$event->hour}}:{{$event->minute}} {{$event->timeType}}</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="w-full m-5 flex flex-col justify-between items-center">
+                          <div class="flex flex-row justify-center items-center">
+                            <p class="text-base text-gray-600">Status:</p>
+                            <div class="rounded-full w-4 h-4 bg-red-500 ml-4"></div>
+                          </div>
+                            <a href="{{route('event.index', ['event' => $event])}}" class="bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 mt-4 rounded-full cursor-pointer">See More</a>
+                        </div>
+                      </div>
+                    </div>
+                    @endforeach
+                  @else
+                  <div class="text-center text-3xl mt-8 text-gray-400 uppercase">
+                    <p>No Event!</p>
+                  </div>
+                  @endif
+                </form>
+
                 <!-- Event List -->
-                <div class="w-full shadow-xl bg-white rounded-xl my-1">
-                  <div class="p-2 flex flex-row">
-                    <div class="h-32 w-full rounded-lg shadow-xl m-5" style="background-image: url('https://images.unsplash.com/photo-1607962837359-5e7e89f86776?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'); background-repeat: no-repeat; background-size: cover;"></div>
-                    <div class="w-full m-5">
-                      <h1 class="text-xl">Running Activity</h1>
-                      <p class="text-sm text-gray-600">By Thomas Adison</p>
-                      <div class="my-5 flex flex-row items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
-                          <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-                          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                        </svg>
-                        <div>
-                          <p class="mx-3 font-normal">07/08/2023 - 11.00 AM</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="w-full m-5 flex flex-col justify-between items-center">
-                      <div class="flex flex-row justify-center items-center">
-                        <p class="text-base text-gray-600">Status:</p>
-                        <div class="rounded-full w-4 h-4 bg-red-500 ml-4"></div>
-                      </div>
-                        <a href="{{route('event.index')}}" class="bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 mt-4 rounded-full cursor-pointer">See More</a>
-                    </div>
-                  </div>
-                </div>
 
-                <div class="w-full shadow-xl bg-white rounded-xl my-1">
-                  <div class="p-2 flex flex-row">
-                    <div class="h-32 w-full rounded-lg shadow-xl m-5" style="background-image: url('https://images.unsplash.com/photo-1607962837359-5e7e89f86776?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'); background-repeat: no-repeat; background-size: cover;"></div>
-                    <div class="w-full m-5">
-                      <h1 class="text-xl">Running Activity</h1>
-                      <p class="text-sm text-gray-600">By Thomas Adison</p>
-                      <div class="my-5 flex flex-row items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
-                          <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-                          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                        </svg>
-                        <div>
-                          <p class="mx-3 font-normal">07/08/2023 - 11.00 AM</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="w-full m-5 flex flex-col justify-between items-center">
-                      <div class="flex flex-row justify-center items-center">
-                        <p class="text-base text-gray-600">Status:</p>
-                        <div class="rounded-full w-4 h-4 bg-red-500 ml-4"></div>
-                      </div>
-                        <a href="{{route('event.index')}}" class="bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 mt-4 rounded-full cursor-pointer">See More</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="w-full shadow-xl bg-white rounded-xl my-1">
-                  <div class="p-2 flex flex-row">
-                    <div class="h-32 w-full rounded-lg shadow-xl m-5" style="background-image: url('https://images.unsplash.com/photo-1607962837359-5e7e89f86776?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'); background-repeat: no-repeat; background-size: cover;"></div>
-                    <div class="w-full m-5">
-                      <h1 class="text-xl">Running Activity</h1>
-                      <p class="text-sm text-gray-600">By Thomas Adison</p>
-                      <div class="my-5 flex flex-row items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
-                          <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
-                          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                        </svg>
-                        <div>
-                          <p class="mx-3 font-normal">07/08/2023 - 11.00 AM</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="w-full m-5 flex flex-col justify-between items-center">
-                      <div class="flex flex-row justify-center items-center">
-                        <p class="text-base text-gray-600">Status:</p>
-                        <div class="rounded-full w-4 h-4 bg-red-500 ml-4"></div>
-                      </div>
-                        <a href="{{route('event.index')}}" class="bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 mt-4 rounded-full cursor-pointer">See More</a>
-                    </div>
-                  </div>
-                </div>
             </div>
         </div>
 @endsection

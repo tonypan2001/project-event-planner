@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('whiteboards', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('event_id'); // Define foreign key relationship
-            // $table->foreignIdFor(Event::class);
-            $table->string('content');
+            $table->string('name');
+            $table->string('date');
+            $table->string('hour');
+            $table->string('minute');
+            $table->string('timeType');
             $table->string('detail');
+            $table->string('property');
             $table->timestamps();
-
+            // $table->foreign('event_id')->references('id')->on('whiteboards');
         });
     }
 
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('whiteboards');
+        Schema::dropIfExists('events');
     }
 };

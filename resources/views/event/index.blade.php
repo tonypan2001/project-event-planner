@@ -7,7 +7,6 @@
     <div class="mx-6 my-4 flex flex-col">
         <!-- INSERT HERE!!! -->
 
-
         <div id="default-carousel" class="relative w-full" data-carousel="slide">
           <!-- Carousel wrapper -->
           <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
@@ -45,46 +44,58 @@
                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                   </svg>
                   <span class="sr-only">Next</span>
-              </span>
-          </button>
+                </span>
+            </button>
         </div>
-
+        
         <div class="border-b border-gray-400 mt-6"></div>
+        
+        {{-- <form action="post" action="{{route('event.manage', ['event' => $event])}}"> --}}
+            <div class="grid grid-cols-1 my-5">
+                <div class="flex flex-row justify-center items-center py-2 my-2">
+                    <h1 class="text-4xl font-bold text-center w-2/3">{{$event->name}}</h1>
+                    
+                </div>
 
-        <div class="grid grid-cols-1 my-5">
-            <div class="flex flex-row justify-center items-center py-2 my-2">
-                <h1 class="text-4xl font-bold text-center w-2/3">Jogging Event</h1>
+                <div class="grid grid-rows gap-6 mx-4">
+                    <div class="my-5 flex flex-row items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+                          <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                          <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                        </svg>
+                        <div>
+                          <p class="mx-3 font-normal">{{$event->date}} - {{$event->hour}}:{{$event->minute}} {{$event->timeType}}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold">Detail</h3>
+                        <p class="text-base">{{$event->detail}}</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold">Property</h3>
+                        <p class="text-base">{{$event->property}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-3 gap-4 content-center w-full mb-5 mx-6 mt-5">
+                <a href="{{ route('dashboard.index') }}" class="col-span-1 justify-self-start">< Back</a>
+                <button class="col-span-1 bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 rounded-full">Join Event</button>
+                {{-- <a href="{{ route('event.manage') }}" class="col-span-1 justify-self-end">Edit ></a> --}}
                 <!-- Manage Button -->
-                {{-- <div class="flex justify-end items-center border w-1/3">
-                    <a class="flex justify-center items-center w-32 bg-white border border-2 border-mypurple-light hover:border-mypurple-dark text-mypurple-light hover:text-mypurple-dark text-center cursor-pointer font-bold py-2 px-4 rounded-full">
+                <div class="flex justify-self-end items-center w-1/3">
+                    <a href="{{route('event.manage', ['event' => $event])}}" class="flex justify-center items-center w-32 bg-white border border-2 border-mypurple-light hover:border-mypurple-dark text-mypurple-light hover:text-mypurple-dark text-center cursor-pointer font-bold py-2 px-4 rounded-full">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
                             <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
                             <path d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z"/>
-                          </svg>
-                          <p class="mx-2">
-                              Manage
-                          </p>
+                        </svg>
+                        <p class="mx-2">
+                            Manage
+                        </p>
                     </a>
-                </div> --}}
-            </div>
-
-            <div class="grid grid-rows gap-6 mx-4">
-                <div>
-                    <h3 class="text-lg font-bold">About Event</h3>
-                    <p class="text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae illo officiis consectetur beatae vero? Assumenda doloribus vero atque facere tempora reiciendis repudiandae quasi, dolor quae itaque! Culpa cum debitis nulla!</p>
                 </div>
-                <div>
-                    <h3 class="text-lg font-bold">Property</h3>
-                    <p class="text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae illo officiis consectetur beatae vero? Assumenda doloribus vero atque facere tempora reiciendis repudiandae quasi, dolor quae itaque! Culpa cum debitis nulla!</p>
-                </div>
+                <!-- end Manage Button -->
             </div>
-        </div>
-
-        <div class="grid grid-cols-3 gap-4 content-center w-full mb-5 mx-6 mt-5">
-            <a href="{{ route('dashboard.index') }}" class="col-span-1 justify-self-start">< Back</a>
-            <button class="col-span-1 bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 rounded-full">Join Event</button>
-            <a href="{{ route('event.manage') }}" class="col-span-1 justify-self-end">Edit ></a>
-        </div>
+        {{-- </form> --}}
     </div>
 </div>
 @endsection

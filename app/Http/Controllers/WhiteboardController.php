@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Whiteboard;
 use Illuminate\Http\Request;
 
@@ -10,10 +11,12 @@ class WhiteboardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Event $event)
     {
-        $whiteboards = Whiteboard::all();
-        return view('event.whiteboard', compact('whiteboards'));
+        // $whiteboards = Whiteboard::all();
+        // return view('event.whiteboard', compact('whiteboards'), ['event' => $event]);
+        // return Event::find($event)->whiteboard;
+        
     }
 
     /**

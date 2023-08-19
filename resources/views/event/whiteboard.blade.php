@@ -10,7 +10,7 @@
             <div class="w-full rounded-lg shadow-lg border">
                 <div class="card m-2">
                     <div class="card-body text-center">
-                        <form action="{{ route('event.store') }}" class="w-full flex flex-col justify-center items-center" method="POST" autocomplete="off">
+                        <form action="{{ route('event.storeWhiteboard') }}" class="w-full flex flex-col justify-center items-center" method="POST" autocomplete="off">
                             @csrf
                             <div class="w-full flex flex-col justify-center items-center">
                                 <div class="w-full">
@@ -35,7 +35,7 @@
                         <div class="list-group list-group-flush m-4">
                             @foreach ($whiteboards as $whiteboard)
                                 <div class="my-4">
-                                    <form method="POST" action="{{ route('event.destroy', $whiteboard->id) }}" class="shadow-sm border-2 rounded-lg py-4 flex flex-col justify-center items-center">
+                                    <form method="POST" action="{{ route('event.destroyWhiteboard', $whiteboard->id) }}" class="shadow-sm border-2 rounded-lg py-4 flex flex-col justify-center items-center">
                                         <div>
                                             <div class="my-4">
                                                 <h1 class="font-medium text-2xl">
