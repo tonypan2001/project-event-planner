@@ -34,7 +34,7 @@
                                           class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2"
                                           type="email" name="email" :value="old('email')"
                                           required autofocus autocomplete="username"
-                                          placeholder="Enter username or email"
+                                          placeholder="Enter email"
                             />
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
