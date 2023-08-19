@@ -8,8 +8,16 @@ use Illuminate\Http\Request;
 class SettingsController extends Controller
 {
     //
-    public function index() {
-        return view('settings.index');
+    public function index(User $user) {
+        return view('settings.index',['user'=>$user]);
+    }
+
+    public function show(string $id)
+    {
+        $user = User::findOrFail($id);
+        return view('settings.index', [
+            'user' => $user
+        ]);
     }
 
     public function update(Request $request, User $user)

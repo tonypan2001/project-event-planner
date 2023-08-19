@@ -44,7 +44,7 @@
                     <button class="col-span-1 bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 rounded-full">Save Changes</button>
                 </div>
             </form>
-            <form action="{{ route('settings.update',['user'=>$user]) }}" method="POST">
+            <form action="{{ route('settings.update',[Auth::user()->id]) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="mb-5">

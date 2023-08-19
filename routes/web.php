@@ -35,6 +35,7 @@ Route::get('/register', function () {
 
 // Route Setting
 Route::resource('/settings', SettingsController::class);
+Route::get('/settings/{user->id()}', [SettingsController::class, 'index'])->name('settings.update');
 
 // Dont want anon to get to ur web without login?
 // Use This!
