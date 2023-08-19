@@ -62,4 +62,4 @@ Route::get('/event/manage/edit/worker', [EventController::class, 'editWorker'])-
 // Whiteboard
 Route::get('/event/whiteboard/{event}', [WhiteboardController::class, 'index'])->name('event.whiteboard');
 Route::post('/event/whiteboard', [WhiteboardController::class, 'store'])->name('event.storeWhiteboard');
-Route::delete('/event/whiteboard/{event}/destroy', [WhiteboardController::class, 'destroy'])->name('event.destroyWhiteboard');
+Route::delete('/event/whiteboard/{whiteboard}/destroy', [WhiteboardController::class, 'destroy'])->name('event.destroyWhiteboard');

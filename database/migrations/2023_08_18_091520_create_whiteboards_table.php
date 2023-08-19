@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('whiteboards', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('event_id'); // Define foreign key relationship
+            $table->unsignedBigInteger('event_id'); // Define foreign key relationship
             // $table->foreignIdFor(Event::class);
             $table->string('content');
             $table->string('detail');
-            $table->timestamps();
+            $table->timestamps(); 
 
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
         });
     }
 
