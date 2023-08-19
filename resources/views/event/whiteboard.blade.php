@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mt-4 w-full">
-        <h1 class="text-2xl font-medium text-center text-black">Whiteboard</h1>
+        <h1 class="text-2xl font-medium text-center text-black">Whiteboard for {{$event->name}}</h1>
         <div class="border-b border-gray-400 mt-4"></div>
         <div class="mx-6 my-4 flex flex-col">
             <!-- INSERT HERE!!! -->
@@ -10,16 +10,25 @@
             <div class="w-full rounded-lg shadow-lg border">
                 <div class="card m-2">
                     <div class="card-body text-center">
-                        <form action="{{ route('event.store') }}" class="w-full flex flex-col justify-center items-center" method="POST" autocomplete="off">
+                        <form action="{{ route('event.storeWhiteboard') }}" class="w-full flex flex-col justify-center items-center" method="POST" autocomplete="off">
                             @csrf
                             <div class="w-full flex flex-col justify-center items-center">
                                 <div class="w-full">
+                                    <input type="hidden" name="event_id" value="{{ $event->id }}">
+                                </div>
+                                <div class="w-full">
                                     <h1 class="font-medium text-lg mt-2">Content</h1>
                                     <input type="text" name="content" class="w-1/3 mt-2 py-3 rounded-full" placeholder="Add your content">
+                                    @error('content')
+                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <div class="w-full">
                                     <h1 class="font-medium text-lg mt-2">Detail</h1>
                                     <textarea type="text" name="detail" class="w-1/3 mt-2 rounded-lg" placeholder="Add your detail"></textarea>
+                                    @error('detail')
+                                        <p class="text-red-500 text-sm">{{ $message }}</p>
+                                    @enderror
                                 </div>
                             </div>
                             <button type="submit" class="bg-mypink-light py-2 px-4 w-1/4 mt-4 flex-row flex justify-center items-center rounded-full text-white">
@@ -29,13 +38,16 @@
                                 </svg>
                                 Add
                             </button>
-                        </form>
+                        </form
+
                         <!-- if tasks count -->
                         @if ($whiteboards && count($whiteboards) > 0)
                         <div class="list-group list-group-flush m-4">
                             @foreach ($whiteboards as $whiteboard)
                                 <div class="my-4">
-                                    <form method="POST" action="{{ route('event.destroy', $whiteboard->id) }}" class="shadow-sm border-2 rounded-lg py-4 flex flex-col justify-center items-center">
+                                    <form method="POST" action="{{ route('event.destroyWhiteboard', $whiteboard->id) }}" class="shadow-sm border-2 rounded-lg py-4 flex flex-col justify-center items-center">
+                                        @csrf
+                                        @method('delete')
                                         <div>
                                             <div class="my-4">
                                                 <h1 class="font-medium text-2xl">
@@ -47,10 +59,7 @@
                                                     {{ $whiteboard->detail }}
                                                 </p>
                                             </div>
-                                            @csrf
                                         </div>
-                                        @csrf
-                                        @method('delete')
                                         <button type="submit" class="bg-mypurple-light py-2.5 px-6 m-3 text-white flex justify-center items-center text-sm rounded-full">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash mr-2" viewBox="0 0 16 16">
                                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
@@ -76,7 +85,7 @@
             </div>
 
             <div class="grid grid-cols-3 gap-4 content-center w-full mb-5 mx-6 mt-5">
-                <a href="{{ route('event.manage') }}" class="col-span-1 justify-self-start">< Back</a>
+                <a href="{{ route('event.manage', ['event' => $event]) }}" class="col-span-1 justify-self-start">< Back</a>
             </div>
         </div>
     </div>

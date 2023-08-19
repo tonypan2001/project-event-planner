@@ -53,17 +53,26 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
 
 // Event
-    Route::get('/event', [EventController::class, 'index'])->name('event.index');
-    Route::get('/create-event', [EventController::class, 'create'])->name('event.create');
-    Route::get('/event/manage', [EventController::class, 'manager'])->name('event.manage');
+    Route::get('/event/{event}', [EventController::class, 'index'])->name('event.index');
+
+// Create Event
+    Route::get('/create-event', [EventController::class, 'create'])->name('event.createEvent'); // create event page
+    Route::post('/event', [EventController::class, 'storeEvent'])->name('event.storeEvent');
+    Route::get('/event/edit/{event}', [EventController::class, 'editEvent'])->name('event.editEvent');
+    Route::put('/event/edit/{event}/update', [EventController::class, 'updateEvent'])->name(('event.updateEvent'));
+    Route::get('/event/manage/{event}', [EventController::class, 'manage'])->name('event.manage');
+
+
+    Route::delete('/event/manage/{event}/destroy', [EventController::class, 'destroyEvent'])->name('event.manage.destroy');
     Route::get('/event/edit', [EventController::class, 'edit'])->name('event.edit');
     Route::get('/event/manage/edit/budget', [EventController::class, 'editBudget'])->name('event.editBudget');
     Route::get('/event/manage/edit/worker', [EventController::class, 'editWorker'])->name('event.editWorker');
 
 // Whiteboard
-    Route::get('/event/whiteboard', [WhiteboardController::class, 'index'])->name('event.whiteboard');
-    Route::post('/event/whiteboard', [WhiteboardController::class, 'store'])->name('event.store');
-    Route::delete('/event/whiteboard', [WhiteboardController::class, 'destroy'])->name('event.destroy');
+    Route::get('/event/whiteboard/{event}', [WhiteboardController::class, 'index'])->name('event.whiteboard');
+    Route::post('/event/whiteboard', [WhiteboardController::class, 'store'])->name('event.storeWhiteboard');
+    Route::delete('/event/whiteboard/{whiteboard}/destroy', [WhiteboardController::class, 'destroy'])->name('event.destroyWhiteboard');
+
 });
 require __DIR__.'/auth.php';
 

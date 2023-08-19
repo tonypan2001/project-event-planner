@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Whiteboard;
 use Illuminate\Http\Request;
 
@@ -10,10 +11,17 @@ class WhiteboardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Event $event)
     {
-        $whiteboards = Whiteboard::all();
-        return view('event.whiteboard', compact('whiteboards'));
+        // $whiteboards = Whiteboard::all();
+        // return view('event.whiteboard', compact('whiteboards'), ['event' => $event]);
+        // return Event::find($event)->whiteboard;
+        // $whiteboards = Whiteboard::all();
+        // $whiteboard = $event->whiteboard;
+        // return view('event.whiteboard', compact('whiteboard', 'event'));
+        $whiteboards = Whiteboard::where('event_id', $event->id)->get();
+
+        return view('event.whiteboard', compact('event', 'whiteboards'));
     }
 
     /**
@@ -32,11 +40,20 @@ class WhiteboardController extends Controller
         $data = $request->validate([
             'content' => ['required', 'string', 'min:3', 'max:100'],
             'detail' => ['required', 'string', 'min:3', 'max:255'],
+            // 'event_id' => ['required', 'exists:events,id'], // Ensure event_id exist
         ]);
 
-        Whiteboard::create($data);
-        // return redirect()->route('event.whiteboard');
-        return back();
+        // Get the current event from the request
+        $event = Event::findOrFail($request->input('event_id'));
+
+        // Create a new whiteboard entry associated with the event
+        $event->whiteboard()->create($data);
+
+        return redirect()->back()->with('success', 'Whiteboard entry added successfully.');
+
+        // Whiteboard::create($data);
+        // // return redirect()->route('event.whiteboard');
+        // return back();
     }
 
     /**
@@ -69,7 +86,6 @@ class WhiteboardController extends Controller
     public function destroy(Whiteboard $whiteboard)
     {
         $whiteboard->delete();
-        // return redirect()->route('event.whiteboard');
-        return back();
+        return back()->with('success', 'Whiteboard entry deleted successfully.');
     }
 }
