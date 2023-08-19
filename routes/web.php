@@ -33,6 +33,9 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
+// Route Setting
+Route::resource('/settings', SettingsController::class);
+
 // Dont want anon to get to ur web without login?
 // Use This!
 Route::middleware(['auth'])->group(function () {

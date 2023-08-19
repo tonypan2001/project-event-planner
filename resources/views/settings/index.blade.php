@@ -44,6 +44,18 @@
                     <button class="col-span-1 bg-mypink-light hover:bg-mypink-dark text-white font-bold py-2 px-10 rounded-full">Save Changes</button>
                 </div>
             </form>
+            <form action="{{ route('settings.update',['user'=>$user]) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="mb-5">
+                    <label for="fullname" class="block mb-2 font-bold text-gray-600">Artist Name</label>
+                    <input type="text" id="fullname" name="fullname" autocomplete = "off" 
+                    value="{{$user->fullname}}"
+                    placeholder="Put in artist name" class="border border-gray-300 shadow p-3 w-full rounded mb-">
+                </div>
+
+                <button type="submit" class="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg">Submit</button>
+            </form>
         </div>
 
         <div class="grid grid-cols-3 gap-4 content-center w-full mb-5 mx-6 mt-5">

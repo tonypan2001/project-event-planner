@@ -21,16 +21,21 @@ class UserSeeder extends Seeder
 //        }
 
         $user = new User();
+        $user->fullname = "usernamefull";
         $user->username = "User01";
+        $user->phone_num = "0879435334";
+        $user->age = "87";
         $user->email = "user01@example.com";
         $user->password = Hash::make("password");
         $user->save();
 
-        $user = new User();
-        $user->username = "Admin01";
-        $user->email = "admin01@example.com";
-        $user->password = Hash::make("admin");
-        $user->role = "ADMIN";
-        $user->save();
+        // $user = new User();
+        // $user->username = "Admin01";
+        // $user->email = "admin01@example.com";
+        // $user->password = Hash::make("admin");
+        // $user->role = "ADMIN";
+        // $user->save();
+
+        
     }
 }
