@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('date');
             $table->string('hour');
             $table->string('minute');
-            $table->string('timeType');
+            $table->enum('timeType', ['AM','PM']);
             $table->string('detail');
             $table->string('property');
+            $table->string('image')->default('')->change();
             $table->timestamps();
             // $table->foreign('event_id')->references('id')->on('whiteboards');
         });

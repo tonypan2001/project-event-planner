@@ -94,7 +94,9 @@
                     @foreach ($events as $event)
                     <div class="w-full shadow-xl bg-white rounded-xl my-1">
                       <div class="p-2 flex flex-row">
-                        <div class="h-32 w-full rounded-lg shadow-xl m-5" style="background-image: url('https://images.unsplash.com/photo-1607962837359-5e7e89f86776?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'); background-repeat: no-repeat; background-size: cover;"></div>
+                        <div class="h-32 w-full rounded-lg shadow-xl m-5">
+                          <img src="{{asset('storage/' . $event->image_path)}}" alt="Event Image" class="w-full h-full object-cover rounded-lg">
+                        </div>
                         <div class="w-full m-5">
                           <h1 class="text-xl"> {{$event->name}} </h1>
                           <p class="text-sm text-gray-600">By Thomas Adison</p>

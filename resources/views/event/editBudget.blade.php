@@ -9,7 +9,7 @@
 
 
             <div class="grid grid-cols-3 gap-4 content-center w-full mb-5 mx-6 mt-5">
-                <a href="{{ route('event.manage') }}" class="col-span-1 justify-self-start">< Back</a>
+                <a href="{{ route('event.manage', ['event' => $event]) }}" class="col-span-1 justify-self-start">< Back</a>
             </div>
         </div>
     </div>

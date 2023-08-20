@@ -18,18 +18,31 @@ class EventController extends Controller
         return view('event.create');
     }
 
-    public function storeEvent(Request $request) {
+    public function storeEvent(Request $request, Event $event) {
         // dd($request);
         $data = $request->validate([
             'name' => 'required|string|min:3|max:50',
             'date' => 'required|string|min:0|max:10',
             'hour' => 'required|string|min:0|max:2',
             'minute' => 'required|string|min:0|max:2',
-            'timeType' => 'required|string',
+            'timeType' => 'required|in:AM,PM',
             'detail' => 'required|string|min:0|max:255|nullable',
-            'property' => 'required|string|min:0|max:255|nullable'
+            'property' => 'required|string|min:0|max:255|nullable',
+            'image' => 'required|nullable|image|mimes:jpg,jpeg,png,gif|max:2048'
         ]);
+
         $newEvent = Event::create($data);
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $eventId = $newEvent->id;
+            $imageName = $eventId . '.' . $request->file('image')->getClientOriginalExtension();
+            $imagePath = $request->file('image')->storeAs('event_images', $imageName, 'public');
+            $newEvent->update(['image_path' => $imagePath]);
+        }
+
+        // dd($request->all());
+
+        // $newEvent = Event::create($data);
         return redirect(route('dashboard.index'));
     }
 
@@ -45,14 +58,26 @@ class EventController extends Controller
             'minute' => 'required|string|min:0|max:2',
             'timeType' => 'required|string',
             'detail' => 'required|string|min:0|max:255|nullable',
-            'property' => 'required|string|min:0|max:255|nullable'
+            'property' => 'required|string|min:0|max:255|nullable',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048'
         ]);
+
+        
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $eventId = $event->id;
+            $imageName = $eventId . '.' . $request->file('image')->getClientOriginalExtension();
+            $imagePath = $request->file('image')->storeAs('event_images', $imageName, 'public');
+            $event->update(['image_path' => $imagePath]);
+        }
+
         $event->update($data);
         return redirect(route('event.manage', ['event' => $event]));
         // return view('event.manage', ['event' => $event]);
     }
 
     public function destroyEvent(Event $event) {
+        $event->deleteImage();
         $event->delete();
         return redirect(route('dashboard.index'))->with('Success', 'Event deleted successfully');
     }

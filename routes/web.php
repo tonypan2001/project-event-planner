@@ -40,6 +40,8 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/notification', [NotificationController::class, 'index'])->name('notification.index');
 
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+Route::post('/gallery', [GalleryController::class, 'storeGalleryImage'])->name('gallery.store');
+Route::delete('gallery/{gallery}', [GalleryController::class, 'destroyGalleryImage'])->name('gallery.destroy');
 
 Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
 
@@ -56,8 +58,8 @@ Route::get('/event/manage/{event}', [EventController::class, 'manage'])->name('e
 
 Route::delete('/event/manage/{event}/destroy', [EventController::class, 'destroyEvent'])->name('event.manage.destroy');
 Route::get('/event/edit', [EventController::class, 'edit'])->name('event.edit');
-Route::get('/event/manage/edit/budget', [EventController::class, 'editBudget'])->name('event.editBudget');
-Route::get('/event/manage/edit/worker', [EventController::class, 'editWorker'])->name('event.editWorker');
+Route::get('/event/manage/editbudget/{event}', [EventController::class, 'editBudget'])->name('event.editBudget');
+Route::get('/event/manage/editworker/{event}', [EventController::class, 'editWorker'])->name('event.editWorker');
 
 // Whiteboard
 Route::get('/event/whiteboard/{event}', [WhiteboardController::class, 'index'])->name('event.whiteboard');
