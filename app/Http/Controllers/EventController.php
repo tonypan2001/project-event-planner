@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -19,7 +20,8 @@ class EventController extends Controller
     }
 
     public function storeEvent(Request $request) {
-        // dd($request);
+//         dd($request);
+        $user = Auth::user(); //call user ...hello?
         $data = $request->validate([
             'name' => 'required|string|min:3|max:50',
             'date' => 'required|string|min:0|max:10',
@@ -30,6 +32,13 @@ class EventController extends Controller
             'property' => 'required|string|min:0|max:255|nullable'
         ]);
         $newEvent = Event::create($data);
+
+        // add 'role' => 'HOST' to db:event_user
+        $user->events()->attach($newEvent->id, [
+            'role' => 'HOST'
+        ]);
+
+        //u done? gtfu lol
         return redirect(route('dashboard.index'));
     }
 
@@ -79,4 +88,16 @@ class EventController extends Controller
     // public function whiteboard() {
     //     return view('event.whiteboard');
     // }
+
+    //user send request to join an event
+    public function join(Event $event)
+    {
+        $user = Auth::user(); //call user ...Who is this? Stop calling me
+        // add 'role' => 'ATTENDEE' to db:event_user
+        $user->events()->attach($event, [
+            'role' => 'ATTENDEE'
+        ]);
+        return redirect()->route('dashboard.index');
+//            ->with('success', 'Request to join successfully'); // might use it later lol
+    }
 }

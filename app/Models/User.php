@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -20,7 +22,7 @@ class User extends Authenticatable
     protected $fillable = [
         'fullname',
         'phone_num',
-        'age',  
+        'age',
         'username',
         'email',
         'password',
@@ -48,5 +50,26 @@ class User extends Authenticatable
 
     public function isAdmin() {
         return $this->role === "ADMIN";
+    }
+
+    public function isHost(string $id)
+    {
+        if(!$this->events->where('id', $id)->isEmpty())
+        {
+            return $this->events->where('id', $id)->first()->pivot->role === 'HOST' ;
+        }
+    }
+
+    public function isJoin(string $id) {
+        return !$this->events->where('id', $id)->isEmpty();
+    }
+
+//    public function events(): HasMany
+//    {
+//        return $this->hasMany(Event::class);
+//    }
+
+    public function events() : BelongsToMany {
+        return $this->belongsToMany(Event::class)->withPivot('role');
     }
 }
