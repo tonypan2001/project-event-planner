@@ -26,6 +26,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'image_user_path'
     ];
 
     /**
@@ -59,6 +60,14 @@ class User extends Authenticatable
             return $this->events->where('id', $id)->first()->pivot->role === 'HOST' ;
         }
     }
+
+//    public function isStaff(string $id)
+//    {
+//        if(!$this->events->where('id', $id)->isEmpty())
+//        {
+//            return $this->events->where('id', $id)->first()->pivot->role === 'STAFF' ;
+//        }
+//    }
 
     public function isJoin(string $id) {
         return !$this->events->where('id', $id)->isEmpty();

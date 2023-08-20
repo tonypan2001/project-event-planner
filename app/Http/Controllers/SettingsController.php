@@ -20,15 +20,27 @@ class SettingsController extends Controller
         ]);
     }
 
-    public function update(Request $request, User $user)
-    {
-        $user->fullname = $request->get('fullname');        
-        $user->username = $request->get('username');
-        $user->age = $request->get('age');
-        $user->email = $request->get('email');
-        $user->phone_num = $request->get('phone_num');
-        $user->password = $request->get('password');
-        $user->save();
+    public function update(User $user, Request $request) {
+        $data = $request->validate([
+            'fullname' => 'required|string|min:3|max:255',
+            'phone_num' => 'required|string|min:0|max:10',
+            'image' => '|image|mimes:jpg,jpeg,png,gif|max:2048'
+        ]);
+
+        if ($request->hasFile('image')) {
+            $imageName = $request->file('image')->getClientOriginalName();
+            $imagePath = $request->file('image')->storeAs('user_images', $imageName, 'public');
+            $data['image_user_path'] = $imagePath; // <-- Dont forget to add 'image_user_path' to Models >:<
+        }
+//        return $data;
+        $user->update($data);
+//        dd($request->all());
+//        $user->update([
+//            'fullname' => $data['fullname'],
+//            'phone_num' => $data['phone_num'],
+//            'image_user_path' => $data['image']
+//        ]);
         return redirect()->route('dashboard.index',['user'=>$user]);
+        // return view('event.manage', ['event' => $event]);
     }
 }
