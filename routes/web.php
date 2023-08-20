@@ -49,8 +49,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/notification', [NotificationController::class, 'index'])->name('notification.index');
 
     Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
-Route::post('/gallery', [GalleryController::class, 'storeGalleryImage'])->name('gallery.store');
-Route::delete('gallery/{gallery}', [GalleryController::class, 'destroyGalleryImage'])->name('gallery.destroy');
+    Route::post('/gallery', [GalleryController::class, 'storeGalleryImage'])->name('gallery.store');
+    Route::delete('gallery/{gallery}', [GalleryController::class, 'destroyGalleryImage'])->name('gallery.destroy');
 
     Route::get('/settings', [SettingsController::class, 'index'])->name('settings.index');
 

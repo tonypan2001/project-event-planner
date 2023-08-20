@@ -34,6 +34,11 @@ class EventController extends Controller
         ]);
 
         $newEvent = Event::create($data);
+
+        // add 'role' => 'HOST' to db:event_user
+        $user->events()->attach($newEvent->id ,[
+            'role' => 'HOST'
+        ]);
         return redirect(route('dashboard.index'));
     }
 
@@ -101,7 +106,7 @@ class EventController extends Controller
     {
         $user = Auth::user(); //call user ...Who is this? Stop calling me
         // add 'role' => 'ATTENDEE' to db:event_user
-        $user->events()->attach($event, [
+    $user->events()->attach($event, [
             'role' => 'ATTENDEE'
         ]);
         return redirect()->route('dashboard.index');

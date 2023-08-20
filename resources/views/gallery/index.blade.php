@@ -27,6 +27,9 @@
                             Upload
                         </button>
                     </div>
+                    @error('note')
+                    <p class="text-red-500 text-sm">{{ $errors->first('note') }}</p>
+                    @enderror
                 </div>
             </div>
             <!-- END -->
