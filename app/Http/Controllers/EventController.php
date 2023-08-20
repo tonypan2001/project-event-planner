@@ -19,8 +19,8 @@ class EventController extends Controller
         return view('event.create');
     }
 
-    public function storeEvent(Request $request, Event $event) {
-//         dd($request);
+    public function storeEvent(Request $request) {
+//        dd($request->all());
         $user = Auth::user(); //call user ...hello?
         $data = $request->validate([
             'name' => 'required|string|min:3|max:50',
@@ -30,10 +30,29 @@ class EventController extends Controller
             'timeType' => 'required|in:AM,PM',
             'detail' => 'required|string|min:0|max:255|nullable',
             'property' => 'required|string|min:0|max:255|nullable',
-            'image' => 'required|nullable|image|mimes:jpg,jpeg,png,gif|max:2048'
+            'image' => 'required|nullable|image|mimes:jpg,jpeg,png,gif|max:2048' // <-- my man just poison me >:<
         ]);
 
-        $newEvent = Event::create($data);
+
+        if ($request->hasFile('image')) {
+            $imageName = $request->file('image')->getClientOriginalName();
+            $imagePath = $request->file('image')->storeAs('event_images', $imageName, 'public');
+            $data['image'] = $imagePath;
+//            return $data['image'];
+//            return $imagePath;
+        }
+
+//        $newEvent = Event::create($data);
+        $newEvent = Event::create([
+            'name' => $data['name'],
+            'date' => $data['date'],
+            'hour' => $data['hour'],
+            'minute' => $data['minute'],
+            'timeType' => $data['timeType'],
+            'detail' => $data['detail'],
+            'property' => $data['property'],
+            'image_path' => $data['image']
+        ]);
 
         // add 'role' => 'HOST' to db:event_user
         $user->events()->attach($newEvent->id ,[
@@ -58,7 +77,7 @@ class EventController extends Controller
             'image' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048'
         ]);
 
-        
+
         $imagePath = null;
         if ($request->hasFile('image')) {
             $eventId = $event->id;

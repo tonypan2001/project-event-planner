@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('timeType', ['AM','PM']);
             $table->string('detail');
             $table->string('property');
-            $table->string('image')->default('')->change();
+            $table->string('image_path')->default('');
             $table->timestamps();
             // $table->foreign('event_id')->references('id')->on('whiteboards');
         });
