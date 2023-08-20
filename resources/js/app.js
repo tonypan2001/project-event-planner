@@ -1,6 +1,12 @@
 import './bootstrap';
 import 'flowbite';
 
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();
+
 // Use by SIDEBAR in resources/views/layouts/main.blade.php
 
 // const sidebar = document.getElementById('sidebar');
@@ -25,5 +31,3 @@ import 'flowbite';
 //         mainContent.style.marginLeft = '0';
 //     }
 // }
-
-// SIDEBAR END
