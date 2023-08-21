@@ -16,8 +16,10 @@ class GalleryController extends Controller
     public function storeGalleryImage(Request $request, Gallery $gallery) {
         $data = $request->validate([
             'note' => 'nullable|string|min:3|max:30',
-            'gallery_image' => 'required|nullable|image|mimes:jpg,jpeg,png,gif|max:2048'
+            'gallery_image' => 'required|nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            
         ]);
+        
 
         // $newGalleryImage = Gallery::create($data);
         // $galleryImagePath = null;
@@ -35,8 +37,8 @@ class GalleryController extends Controller
             $galleryImageName = $galleryImageId . '.' . time() . '.' . $request->file('gallery_image')->getClientOriginalExtension();
             $galleryImagePath = $request->file('gallery_image')->storeAs('gallery_images', $galleryImageName, 'public');
             $newGallery->update(['gallery_image_path' => $galleryImagePath]);
+            
         }
-
         // $galleries = Gallery::all();
         // return view('gallery.index', compact('galleries'), ['gallery' => $gallery]);;
         return view('gallery.success');

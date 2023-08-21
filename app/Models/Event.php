@@ -23,7 +23,7 @@ class Event extends Model
 
     public function whiteboard() {
         // id ของ table Event
-        return $this->hasOne(Whiteboard::class);
+        return $this->hasMany(Whiteboard::class);
     }
 
     public function users(): BelongsToMany

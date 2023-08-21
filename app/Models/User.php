@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -58,6 +59,7 @@ class User extends Authenticatable
         {
             return $this->events->where('id', $id)->first()->pivot->role === 'HOST' ;
         }
+        return false;
     }
 
     public function isJoin(string $id) {
@@ -72,4 +74,10 @@ class User extends Authenticatable
     public function events() : BelongsToMany {
         return $this->belongsToMany(Event::class)->withPivot('role');
     }
+
+    public function gallery(){
+        return $this->belongsTo(User::class);
+    }
+
+
 }
