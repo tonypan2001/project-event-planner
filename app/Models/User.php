@@ -61,13 +61,13 @@ class User extends Authenticatable
         }
     }
 
-//    public function isStaff(string $id)
-//    {
-//        if(!$this->events->where('id', $id)->isEmpty())
-//        {
-//            return $this->events->where('id', $id)->first()->pivot->role === 'STAFF' ;
-//        }
-//    }
+    public function isStaff(string $id)
+    {
+        if(!$this->events->where('id', $id)->isEmpty())
+        {
+            return $this->events->where('id', $id)->first()->pivot->role === 'STAFF' ;
+        }
+    }
 
     public function isJoin(string $id) {
         return !$this->events->where('id', $id)->isEmpty();

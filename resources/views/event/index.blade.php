@@ -72,7 +72,7 @@
             <div class="grid grid-cols-3 gap-4 content-center w-full mb-5 mx-6 mt-5">
                 <a href="{{ route('dashboard.index') }}" class="col-span-1 justify-self-start">< Back</a>
                 {{-- <a href="{{ route('event.manage') }}" class="col-span-1 justify-self-end">Edit ></a> --}}
-                @if(Auth::user()->isAdmin() | Auth::user()->isHost($event->id))
+                @if(Auth::user()->isAdmin() | Auth::user()->isHost($event->id) | Auth::user()->isStaff($event->id))
                     <!-- Manage Button -->
                     <a href="{{route('event.manage', ['event' => $event])}}" class="flex justify-center items-center bg-white border border-2 border-mypurple-light hover:border-mypurple-dark text-mypurple-light hover:text-mypurple-dark text-center cursor-pointer font-bold py-2 px-4 rounded-full">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">

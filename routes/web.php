@@ -61,19 +61,21 @@ Route::middleware(['auth'])->group(function () {
         // Create Event
         Route::get('/create-event', [EventController::class, 'create'])->name('event.createEvent'); // create event page
         Route::post('/event', [EventController::class, 'storeEvent'])->name('event.storeEvent');
-        Route::get('/event/edit/{event}', [EventController::class, 'editEvent'])->name('event.editEvent');
-        Route::put('/event/edit/{event}/update', [EventController::class, 'updateEvent'])->name(('event.updateEvent'));
-        Route::get('/event/manage/{event}', [EventController::class, 'manage'])->name('event.manage');
+
+        Route::get('/event/{event}/edit/', [EventController::class, 'editEvent'])->name('event.editEvent');
+        Route::put('/event/{event}/edit/update', [EventController::class, 'updateEvent'])->name(('event.updateEvent'));
+//        Route::get('/event/edit', [EventController::class, 'edit'])->name('event.edit'); //unused
+
         Route::get('/events/{event}/join', [EventController::class, 'join'] )->name('events.join');
 
-
-Route::delete('/event/manage/{event}/destroy', [EventController::class, 'destroyEvent'])->name('event.manage.destroy');
-Route::get('/event/edit', [EventController::class, 'edit'])->name('event.edit');
-Route::get('/event/manage/edit/budget', [EventController::class, 'editBudget'])->name('event.editBudget');
-Route::get('/event/manage/edit/worker', [EventController::class, 'editWorker'])->name('event.editWorker');
+        Route::get('/event/{event}/manage/', [EventController::class, 'manage'])->name('event.manage');
+        Route::delete('/event/{event}/manage/destroy', [EventController::class, 'destroyEvent'])->name('event.manage.destroy');
+        Route::get('/event/{event}/manage/edit/budget', [EventController::class, 'editBudget'])->name('event.editBudget');
+        Route::get('/event/{event}/manage/edit/staff', [EventController::class, 'editStaff'])->name('event.editStaff');
+        Route::post('/event/{event}/manage/edit/staff/store', [EventController::class, 'storeStaffEvent'])->name('event.storeStaffEvent');
 
 // Whiteboard
-        Route::get('/event/whiteboard/{event}', [WhiteboardController::class, 'index'])->name('event.whiteboard');
+        Route::get('/event/{event}/whiteboard/', [WhiteboardController::class, 'index'])->name('event.whiteboard');
         Route::post('/event/whiteboard', [WhiteboardController::class, 'store'])->name('event.storeWhiteboard');
         Route::delete('/event/whiteboard/{whiteboard}/destroy', [WhiteboardController::class, 'destroy'])->name('event.destroyWhiteboard');
 

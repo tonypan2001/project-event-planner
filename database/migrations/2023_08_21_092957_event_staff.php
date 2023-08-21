@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('event_user', function (Blueprint $table) {
+        Schema::create('event_staff', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->foreignIdFor(\App\Models\Event::class);
             $table->foreignIdFor(\App\Models\User::class);
-            $table->enum('role', ['HOST', 'ATTENDEE', 'STAFF'])->default('ATTENDEE');
+            $table->string('assignment')->default('')->nullable();
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('event_user');
+        Schema::dropIfExists('event_staff');
     }
 };

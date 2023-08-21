@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
 {
@@ -102,19 +104,107 @@ class EventController extends Controller
 
     public function manage(Event $event) {
         // $event->delete();
-        return view('event.manage', ['event' => $event]);
+        $attendees = $this->getAttendeeList($event);
+        $staffs = $this->getStaffList($event);
+        return view('event.manage', [
+            'event' => $event,
+            'attendees' => $attendees,
+            'staffs' => $staffs
+        ]);
     }
 
     public function edit() {
         return view('event.edit');
     }
 
-    public function editBudget() {
-        return view('event.editBudget');
+    public function editBudget(Event $event) {
+        return view('event.editBudget', ['event' => $event]);
     }
 
-    public function editWorker() {
-        return view('event.editWorker');
+    public function editStaff(Event $event) {
+        $staffList = $this->getStaffList($event);
+        $attendeeList = $this->getAttendeeList($event);
+        $UserStaffEventMixs = $this->getUserStaffEventMix();
+        return view('event.editStaff', [
+            'event' => $event,
+            'attendeeList' => $attendeeList,
+            'staffList' => $staffList,
+            'UserStaffEventMixs' => $UserStaffEventMixs
+        ]);
+    }
+
+    public function storeStaffEvent(Request $request, Event $event) {
+//        dd($request->all());
+        $data = $request->validate([
+            'assignment' => 'required|string|min:3|max:50',
+            'user' => 'required|string|min:3|max:50'
+        ]);
+
+//        $StaffUser = DB::table('event_staff');
+        $user = $this->getAttendeeID($data['user']);
+
+//        return $user;
+//        $newEvent = Event::create($data);
+        DB::table('event_staff')->insertGetId([
+            'event_id' => $event->id,
+            'user_id' => $user,
+            'assignment' => $data['assignment']
+        ]);
+
+        DB::table('event_user') // add 'role' => 'STAFF' to db:event_user
+        ->where('event_id', $event->id)
+            ->where('user_id', $user)
+            ->update(['role' => 'STAFF']);
+
+        // add 'role' => 'STAFF' to db:event_user
+//        $user->events()->attach($newEvent->event_id ,[
+//            'role' => 'STAFF'
+//        ]);
+        $staffList = $this->getStaffList($event);
+        $attendeeList = $this->getAttendeeList($event);
+        $UserStaffEventMixs = $this->getUserStaffEventMix();
+        return view('event.editStaff', [
+            'event' => $event,
+            'attendeeList' => $attendeeList,
+            'staffList' => $staffList,
+            'UserStaffEventMixs' => $UserStaffEventMixs
+        ]);
+    }
+
+    public function getStaffList(Event $event) {
+        return DB::table('event_user') // Just pull this straight from DB lol
+        ->join('users', 'event_user.user_id', '=', 'users.id')
+            ->where('event_user.event_id', $event->id)
+            ->where('event_user.role', 'STAFF')
+//            ->select('users.fullname')
+            ->get();
+    }
+
+    public function getUserStaffEventMix() {
+        return DB::table('event_user')
+            ->join('users', 'event_user.user_id', '=', 'users.id')
+            ->join('event_staff', function ($join) {
+                $join->on('event_user.event_id', '=', 'event_staff.event_id')
+                    ->on('event_user.user_id', '=', 'event_staff.user_id');
+            })
+            ->get();
+    }
+
+    public function getAttendeeList(Event $event) {
+        return DB::table('event_user') // Just pull this straight from DB lol
+            ->join('users', 'event_user.user_id', '=', 'users.id')
+            ->where('event_user.event_id', $event->id)
+            ->where('event_user.role', 'ATTENDEE')
+//            ->select('users.fullname')
+            ->get();
+    }
+
+    public function getAttendeeID($fullname) {
+        return DB::table('event_user') // Just pull this straight from DB again lol
+            ->join('users', 'event_user.user_id', '=', 'users.id')
+            ->where('users.fullname', $fullname)
+            ->select('event_user.user_id')
+            ->value('event_user.user_id'); // Use the value() method to get a single value OHHHHHHHH oOo
     }
 
     // public function whiteboard() {
