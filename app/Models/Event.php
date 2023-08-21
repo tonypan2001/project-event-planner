@@ -26,6 +26,10 @@ class Event extends Model
         return $this->hasOne(Whiteboard::class);
     }
 
+    public function editBudget() {
+        return $this->hasOne(EditBudget::class);
+    }
+
     public function users(): BelongsToMany
     {
         return $this->BelongsToMany(User::class);

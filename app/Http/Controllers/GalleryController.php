@@ -15,7 +15,7 @@ class GalleryController extends Controller
 
     public function storeGalleryImage(Request $request, Gallery $gallery) {
         $data = $request->validate([
-            'note' => 'nullable|string|min:3|max:30',
+            'note' => 'nullable|string|min:0|max:30',
             'gallery_image' => 'required|nullable|image|mimes:jpg,jpeg,png,gif|max:2048'
         ]);
 

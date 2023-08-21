@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CreateEventController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EditBudgetController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\NotificationController;
@@ -66,11 +67,17 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/event/manage/{event}', [EventController::class, 'manage'])->name('event.manage');
         Route::get('/events/{event}/join', [EventController::class, 'join'] )->name('events.join');
 
+        
+        
+        Route::delete('/event/manage/{event}/destroy', [EventController::class, 'destroyEvent'])->name('event.manage.destroy');
+        Route::get('/event/edit', [EventController::class, 'edit'])->name('event.edit');
 
-Route::delete('/event/manage/{event}/destroy', [EventController::class, 'destroyEvent'])->name('event.manage.destroy');
-Route::get('/event/edit', [EventController::class, 'edit'])->name('event.edit');
-Route::get('/event/manage/edit/budget', [EventController::class, 'editBudget'])->name('event.editBudget');
-Route::get('/event/manage/edit/worker', [EventController::class, 'editWorker'])->name('event.editWorker');
+        Route::get('/event/manage/edit-budget/{event}', [EditBudgetController::class, 'index'])->name('event.editBudget');
+        Route::post('/event/manage/edit-budget', [EditBudgetController::class, 'store'])->name('event.editBudget.store');
+        Route::delete('event/manage/edit-budget/{editBudget}/destroy', [EditBudgetController::class, 'destroy'])->name('event.editBudget.destroy');
+        // Route::post('/event/manage/edit/budget/{event}/update', [EditBudgetController::class, 'update'])->name('event.editBudget.update');
+
+        Route::get('/event/manage/edit/worker/{event}', [EventController::class, 'editWorker'])->name('event.editWorker');
 
 // Whiteboard
         Route::get('/event/whiteboard/{event}', [WhiteboardController::class, 'index'])->name('event.whiteboard');
