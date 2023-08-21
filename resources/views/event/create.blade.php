@@ -68,14 +68,17 @@
                                 <p>Hour</p>
                                 <select name="hour" class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
                                     @for ($i = 0; $i <= 12; $i++)
-                                        <option value="{{ $i }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                        @php
+                                            $formattedHour = sprintf('%02d', $i);
+                                        @endphp
+                                        <option value="{{ $formattedHour }}">{{ $formattedHour }}</option>
                                     @endfor
                                 </select>
                                 @error('hour')
                                     <p class="text-red-500 text-sm">{{ $message }}</p>
                                 @enderror
                             </div>
-                            
+
                             {{-- <div class="mx-2">
                                 <p>Minutes</p>
                                 <input type="text" name="minute" placeholder="00" class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
@@ -87,14 +90,17 @@
                                 <p>Minutes</p>
                                 <select name="minute" class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
                                     @for ($i = 0; $i <= 59; $i++)
-                                        <option value="{{ $i }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                        @php
+                                            $formattedHour = sprintf('%02d', $i);
+                                        @endphp
+                                        <option value="{{ $formattedHour }}">{{ $formattedHour }}</option>
                                     @endfor
                                 </select>
                                 @error('minute')
                                     <p class="text-red-500 text-sm">{{ $message }}</p>
                                 @enderror
                             </div>
-                            
+
                             <!-- Dropdown -->
                             <div class="mx-2 flex flex-col justify-center">
                                 <label for="timeType">Select AM or PM</label>
@@ -102,15 +108,15 @@
                                     <select name="timeType" id="timeType" class="bg-gray-50 border border-gray-400 py-1 px-2 my-2 text-gray-900 rounded-xl h-12 w-44 focus:border-none focus:ring-mypink-light focus:ring-2">
                                         <option value="AM">AM</option>
                                         <option value="PM">PM</option>
-                                    </select>              
+                                    </select>
                                 </div>
                             </div>
                             <!-- End Dropdown -->
                         </div>
                     </div>
                 </div>
-                
-  
+
+
                 <div class="my-1">
                     <p>Detail</p>
                     <textarea id="detail" name="detail" rows="4" class="bg-gray-50 block border border-gray-400 p-2.5 rounded-xl w-full h-40 my-2 focus:border-none focus:ring-mypink-light focus:ring-2" placeholder="Leave a detail..."></textarea>
@@ -127,7 +133,7 @@
                     @enderror
                 </div>
 
-                
+
 
                 <div class="flex content-center justify-between w-full my-5 mx-6">
                     <a href="{{route('dashboard.index')}}" class="w-full">< Back</a>
@@ -137,7 +143,7 @@
             </form>
         </div>
     </div>
-</div> 
+</div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const dropdownButton = document.getElementById("dropdown-button");
