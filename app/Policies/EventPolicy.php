@@ -21,7 +21,7 @@ class EventPolicy
      */
     public function view(User $user, Event $event): bool
     {
-        return $user->isAdmin() or $user->isHost($event->id);
+        return $user->isAdmin() or $user->isHost($event->id) or $user->isStaff($event->id);
     }
 
     /**
@@ -37,7 +37,7 @@ class EventPolicy
      */
     public function update(User $user, Event $event): bool
     {
-        return $user->isHost($event->id) or $user->isAdmin();
+        return $user->isHost($event->id) or $user->isAdmin() or $user->isStaff($event->id);
     }
 
     /**
@@ -45,7 +45,7 @@ class EventPolicy
      */
     public function delete(User $user, Event $event): bool
     {
-        return $user->isAdmin() or $user->isHost($event->id);
+        return $user->isAdmin() or $user->isHost($event->id) or $user-> isStaff($event->id);
     }
 
     /**

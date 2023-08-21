@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\NewEventNotification;
 
 class EventController extends Controller
 {
@@ -22,9 +23,9 @@ class EventController extends Controller
         return view('event.create');
     }
 
-    public function storeEvent(Request $request) {
+    public function storeEvent(Request $request,User $user) {
 //        dd($request->all());
-        $user = Auth::user(); //call user ...hello?
+
         $data = $request->validate([
             'name' => 'required|string|min:3|max:50',
             'date' => 'required|string|min:0|max:10',
@@ -66,7 +67,7 @@ class EventController extends Controller
     }
 
     public function editEvent(Event $event) {
-        Gate::authorize('update', Event::class);
+        Gate::authorize('update', [$event,Auth::user()]);
         return view('event.edit', ['event' => $event]);
     }
 

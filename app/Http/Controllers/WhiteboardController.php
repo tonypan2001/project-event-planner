@@ -16,7 +16,6 @@ class WhiteboardController extends Controller
      */
     public function index(Event $event)
     {
-<<<<<<< HEAD
         Gate::authorize('view',[$event,Auth::user()]);
         // $whiteboards = Whiteboard::all();
         // return view('event.whiteboard', compact('whiteboards'), ['event' => $event]);
@@ -24,8 +23,6 @@ class WhiteboardController extends Controller
         // $whiteboards = Whiteboard::all();
         // $whiteboard = $event->whiteboard;
         // return view('event.whiteboard', compact('whiteboard', 'event'));
-=======
->>>>>>> origin/pan
         $whiteboards = Whiteboard::where('event_id', $event->id)->get();
 
         return view('event.whiteboard', compact('event', 'whiteboards'));
@@ -64,8 +61,7 @@ class WhiteboardController extends Controller
      */
     public function destroy(Whiteboard $whiteboard,Event $event)
     {
-        Gate::authorize('delete',[$event,Auth::user()]);
-        $whiteboard->delete();
+         $whiteboard->delete();
         return back()->with('success', 'Whiteboard entry deleted successfully.');
     }
 }

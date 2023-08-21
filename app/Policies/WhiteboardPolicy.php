@@ -44,9 +44,10 @@ class WhiteboardPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Whiteboard $whiteboard): bool
+    public function delete(User $user, Event $event): bool
     {
-        return $user->isAdmin() or $user->isHost($event->id);
+        // return $user->isAdmin() or $user->isHost($event->id);
+        return true;
     }
 
     /**

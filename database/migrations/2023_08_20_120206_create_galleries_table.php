@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('galleries', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
+            // $table->unsignedBigInteger('user_id')->nullable();
             $table->string('note')->nullable();
             $table->foreignIdFor(User::class);
             $table->string('gallery_image')->nullable();
