@@ -35,7 +35,8 @@ class EventController extends Controller
 
 
         if ($request->hasFile('image')) {
-            $imageName = $request->file('image')->getClientOriginalName();
+//            $userId = $user->id;
+            $imageName = time() . '-' . $request->file('image')->getClientOriginalName();
             $imagePath = $request->file('image')->storeAs('event_images', $imageName, 'public');
             $data['image'] = $imagePath;
 //            return $data['image'];
@@ -78,10 +79,10 @@ class EventController extends Controller
         ]);
 
 
-        $imagePath = null;
+//        $imagePath = null;
         if ($request->hasFile('image')) {
-            $eventId = $event->id;
-            $imageName = $eventId . '.' . $request->file('image')->getClientOriginalExtension();
+//            $eventId = $event->id;
+            $imageName = time() . '-' . $request->file('image')->getClientOriginalName();
             $imagePath = $request->file('image')->storeAs('event_images', $imageName, 'public');
             $event->update(['image_path' => $imagePath]);
         }
