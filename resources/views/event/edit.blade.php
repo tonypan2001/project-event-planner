@@ -42,13 +42,29 @@
                         </div>
                         <div class="mx-2 flex">
                             <div class="flex flex-row ">
-                                <div class="mx-2">
+                                {{-- <div class="mx-2">
                                     <p>Hour</p>
                                     <input value="{{$event->hour}}" type="text" name="hour" placeholder="00" class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
-                                </div>
+                                </div> --}}
                                 <div class="mx-2">
+                                    <p>Hour</p>
+                                    <select name="hour" class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
+                                        @for ($i = 0; $i <= 12; $i++)
+                                            <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}" {{$event->hour == str_pad($i, 2, '0', STR_PAD_LEFT) ? 'selected' : ''}}>{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                        @endfor
+                                    </select>
+                                </div>
+                                {{-- <div class="mx-2">
                                     <p>Minutes</p>
                                     <input value="{{$event->minute}}" type="text" name="minute" placeholder="00" class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
+                                </div> --}}
+                                <div class="mx-2">
+                                    <p>Minutes</p>
+                                    <select name="minute" class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
+                                        @for ($i = 0; $i <= 59; $i++)
+                                            <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}" {{$event->minute == str_pad($i, 2, '0', STR_PAD_LEFT) ? 'selected' : ''}}>{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                        @endfor
+                                    </select>
                                 </div>
                             </div>
                         </div>

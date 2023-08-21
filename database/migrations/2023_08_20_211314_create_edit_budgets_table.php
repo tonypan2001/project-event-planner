@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('event_id');
 
-            // $table->decimal('total_budget', 8, 2)->default(0.00)->nullable();
+            $table->decimal('total_budget', 10, 2)->default(0.00);
             $table->string('item');
             $table->string('price');
             $table->timestamps();

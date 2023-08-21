@@ -18,14 +18,14 @@
                                 </div>
                                 <div class="w-full">
                                     <h1 class="font-medium text-lg mt-2">Content</h1>
-                                    <input type="text" name="content" class="w-1/3 mt-2 py-3 rounded-full" placeholder="Add your content">
+                                    <input type="text" name="content" class="w-1/3 mt-2 py-3 rounded-full focus:border-none focus:outline-none focus:ring-2 focus:ring-mypink-light" placeholder="Add your content">
                                     @error('content')
                                         <p class="text-red-500 text-sm">{{ $message }}</p>
                                     @enderror
                                 </div>
                                 <div class="w-full">
                                     <h1 class="font-medium text-lg mt-2">Detail</h1>
-                                    <textarea type="text" name="detail" class="w-1/3 mt-2 rounded-lg" placeholder="Add your detail"></textarea>
+                                    <textarea type="text" name="detail" class="w-1/3 mt-2 rounded-lg focus:border-none focus:outline-none focus:ring-2 focus:ring-mypink-light" placeholder="Add your detail"></textarea>
                                     @error('detail')
                                         <p class="text-red-500 text-sm">{{ $message }}</p>
                                     @enderror

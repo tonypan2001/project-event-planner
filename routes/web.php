@@ -79,9 +79,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/event/{event}/manage/edit/staff/store', [EventController::class, 'storeStaffEvent'])->name('event.storeStaffEvent');
 
         Route::get('/event/manage/edit-budget/{event}', [EditBudgetController::class, 'index'])->name('event.editBudget');
+        Route::post('/event/manage/edit-budget', [EditBudgetController::class, 'store'])->name('event.editBudget.store');
         Route::delete('event/manage/edit-budget/{editBudget}/destroy', [EditBudgetController::class, 'destroy'])->name('event.editBudget.destroy');
         // Route::post('/event/manage/edit/budget/{event}/update', [EditBudgetController::class, 'update'])->name('event.editBudget.update');
-        Route::post('/event/manage/edit-budget', [EditBudgetController::class, 'store'])->name('event.editBudget.store');
+        Route::get('/event/manage/edit/worker/{event}', [EventController::class, 'editWorker'])->name('event.editWorker');
 
         // Whiteboard
         Route::get('/event/{event}/whiteboard/', [WhiteboardController::class, 'index'])->name('event.whiteboard');
