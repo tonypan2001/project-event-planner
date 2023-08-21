@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gallery;
+use AppModels\User;
 use Illuminate\Http\Request;
 
 class GalleryController extends Controller
@@ -19,18 +20,7 @@ class GalleryController extends Controller
             'gallery_image' => 'required|nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
             
         ]);
-        
-
-        // $newGalleryImage = Gallery::create($data);
-        // $galleryImagePath = null;
-        // if ($request->hasFile('gallery_image')) {
-        //     $galleryImageId = $newGalleryImage->id;
-        //     $galleryImageName = $galleryImageId . '.' . $request->file('gallery_image')->getClientOriginalExtension();
-        //     $galleyImagePath = $request->file('gallery_image')->storeAs('galley_images', $galleryImageName, 'public');
-        //     $newGalleryImage->update(['galley_image_path' => $galleryImagePath]);
-        // }
-        // $newGalleryImage = Gallery::create($data);
-        $newGallery = Gallery::create($data);
+        $newGallery = auth()->user()->gallery()->create($data);
         $galleryImagePath = null;
         if ($request->hasFile('gallery_image')) {
             $galleryImageId = $newGallery->id;

@@ -35,6 +35,13 @@ class EventController extends Controller
         ]);
 
         $newEvent = Event::create($data);
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $eventId = $newEvent->id;
+            $imageName = $eventId . '.' . $request->file('image')->getClientOriginalExtension();
+            $imagePath = $request->file('image')->storeAs('event_images', $imageName, 'public');
+            $newEvent->update(['image_path' => $imagePath]);
+        }        
 
         // add 'role' => 'HOST' to db:event_user
         $user->events()->attach($newEvent->id ,[
@@ -96,13 +103,11 @@ class EventController extends Controller
     }
 
     public function editBudget(Event $event) {
-        Gate::authorize('view',[$event,Auth::user()]);
-        return view('event.editBudget');
+        return view('event.editBudget', ['event' => $event]);
     }
 
     public function editWorker(Event $event) {
-        Gate::authorize('view',[$event,Auth::user()]);
-        return view('event.editWorker');
+        return view('event.editWorker', ['event' => $event]);
     }
 
     // public function whiteboard() {

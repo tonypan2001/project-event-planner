@@ -35,7 +35,7 @@
                 <div class="grid grid-cols-3 gap-4 content-center w-full mb-5 mx-6 mt-5">
                     <a href="{{ route('event.manage', ['event' => $event]) }}" class="col-span-1 justify-self-start">< Back</a>
                     <button id="addInputBlock" class="ml-4 py-2 px-6 bg-mypink-light hover:bg-mypink-dark text-white font-bold rounded-md">+</button>
-                    <button class="ml-4 py-2 px-6 bg-mypink-light hover:bg-mypink-dark text-white font-bold rounded-md" href="{{ route('event.manage') }}">Save</button>
+                    <button class="ml-4 py-2 px-6 bg-mypink-light hover:bg-mypink-dark text-white font-bold rounded-md" href="{{ route('event.manage', ['event' => $event]) }}">Save</button>
                 </div>
             </div>
         </div>

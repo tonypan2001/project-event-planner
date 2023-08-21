@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 use Illuminate\Support\Facades\Storage;
 
 class Gallery extends Model
@@ -13,11 +15,11 @@ class Gallery extends Model
     // protected $table = 'gallery';
     protected $fillable = ['note','gallery_image_path'];
 
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
-
-
+    // Gallery.php
+public function user()
+{
+    return $this->belongsTo(User::class);
+}
 
     // Delete Image File Fron storage
     public function deleteGalleryImage() {

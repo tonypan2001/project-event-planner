@@ -75,9 +75,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Event::class)->withPivot('role');
     }
 
-    public function gallery(){
-        return $this->belongsTo(User::class);
-    }
+    public function galleries()
+{
+    return $this->hasMany(Gallery::class);
+}
 
 
 }

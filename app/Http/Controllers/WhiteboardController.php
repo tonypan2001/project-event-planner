@@ -16,6 +16,7 @@ class WhiteboardController extends Controller
      */
     public function index(Event $event)
     {
+<<<<<<< HEAD
         Gate::authorize('view',[$event,Auth::user()]);
         // $whiteboards = Whiteboard::all();
         // return view('event.whiteboard', compact('whiteboards'), ['event' => $event]);
@@ -23,17 +24,11 @@ class WhiteboardController extends Controller
         // $whiteboards = Whiteboard::all();
         // $whiteboard = $event->whiteboard;
         // return view('event.whiteboard', compact('whiteboard', 'event'));
+=======
+>>>>>>> origin/pan
         $whiteboards = Whiteboard::where('event_id', $event->id)->get();
 
         return view('event.whiteboard', compact('event', 'whiteboards'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -62,34 +57,6 @@ class WhiteboardController extends Controller
         // $event->whiteboard()->attach($whiteboard);
 
         return redirect()->back()->with('success', 'Whiteboard entry added successfully.');
-
-        // Whiteboard::create($data);
-        // // return redirect()->route('event.whiteboard');
-        // return back();
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Whiteboard $whiteboard)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Whiteboard $whiteboard)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Whiteboard $whiteboard)
-    {
-        //
     }
 
     /**

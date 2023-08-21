@@ -38,7 +38,7 @@
             <!-- Display Paginated Images -->
             {{-- <div class="w-auto mx-auto px-6 py-6 border-2 rounded-lg">
                 <div class="flex flex-wrap">
-                    @foreach ($galleries as $gallery)
+                    @foreach (Auth::getUser()->galleries as $gallery)
                     <div class="h-48 w-auto rounded-lg shadow-xl m-5">
                             <img src="{{ asset('storage/' . $gallery->gallery_image_path) }}" alt="Image" class="w-full h-full object-cover rounded-lg">
                             <p>Note: {{$gallery->note}}</p>
@@ -55,7 +55,7 @@
             </div> --}}
             <div class="w-auto mx-auto px-6 py-6 rounded-lg">
                 <div class="flex flex-wrap">
-                    @foreach ($galleries as $gallery)
+                @foreach (Auth::getUser()->galleries as $gallery)
                     <div class="relative h-48 w-auto rounded-lg shadow-xl m-5">
                         {{-- <img src="{{ asset('storage/' . $gallery->gallery_image_path) }}" alt="Image" class="w-full h-full object-cover rounded-lg"> --}}
                         <img src="{{ asset('storage/' . $gallery->gallery_image_path) }}?{{ time() }}" alt="Image" class="w-full h-full object-cover rounded-lg">

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('image')->default('')->change();
             $table->timestamps();
             // $table->foreign('event_id')->references('id')->on('whiteboards');
+            // $table->decimal('total_budget', 10, 2)->default(0.00)->nullable();
         });
     }
 
