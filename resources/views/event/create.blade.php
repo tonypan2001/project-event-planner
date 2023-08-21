@@ -57,20 +57,44 @@
                     </div>
                     <div class="mx-2 flex">
                         <div class="flex flex-row ">
+                            {{-- <div class="mx-2">
+                            <p>Hour</p>
+                            <input type="text" name="hour" placeholder="00" class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
+                                @error('hour')
+                                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                                @enderror
+                            </div> --}}
                             <div class="mx-2">
                                 <p>Hour</p>
-                                <input type="text" name="hour" placeholder="00" class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
+                                <select name="hour" class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
+                                    @for ($i = 0; $i <= 12; $i++)
+                                        <option value="{{ $i }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                    @endfor
+                                </select>
                                 @error('hour')
                                     <p class="text-red-500 text-sm">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="mx-2">
+                            
+                            {{-- <div class="mx-2">
                                 <p>Minutes</p>
                                 <input type="text" name="minute" placeholder="00" class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
                                 @error('minute')
                                     <p class="text-red-500 text-sm">{{ $message }}</p>
                                 @enderror
+                            </div> --}}
+                            <div class="mx-2">
+                                <p>Minutes</p>
+                                <select name="minute" class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
+                                    @for ($i = 0; $i <= 59; $i++)
+                                        <option value="{{ $i }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                                    @endfor
+                                </select>
+                                @error('minute')
+                                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                                @enderror
                             </div>
+                            
                             <!-- Dropdown -->
                             <div class="mx-2 flex flex-col justify-center">
                                 <label for="timeType">Select AM or PM</label>

@@ -21,13 +21,22 @@ class Event extends Model
         }
     }
 
+    // public function calculateTotalBudget(EditBudget $editBudget) {
+    //     $totalBudget = 0;
+    //     foreach ($this->editBudget as $editBudget) {
+    //         $totalBudget += $editBudget->price;
+    //     }
+    
+    //     return number_format($totalBudget, 2);
+    // }
+
     public function whiteboard() {
         // id ของ table Event
         return $this->hasOne(Whiteboard::class);
     }
 
-    public function editBudget() {
-        return $this->hasOne(EditBudget::class);
+    public function editBudgets() {
+        return $this->hasMany(EditBudget::class);
     }
 
     public function users(): BelongsToMany
