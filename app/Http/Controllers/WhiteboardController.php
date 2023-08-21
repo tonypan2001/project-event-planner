@@ -29,6 +29,14 @@ class WhiteboardController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -54,6 +62,31 @@ class WhiteboardController extends Controller
         // $event->whiteboard()->attach($whiteboard);
 
         return redirect()->back()->with('success', 'Whiteboard entry added successfully.');
+    }
+
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Whiteboard $whiteboard)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Whiteboard $whiteboard)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Whiteboard $whiteboard)
+    {
+        //
     }
 
     /**

@@ -22,7 +22,7 @@ class WhiteboardPolicy
      */
     public function view(User $user, Whiteboard $whiteboard,Event $event): bool
     {
-        return $user->isAdmin() or $user->isHost($event->id);
+        return $user->isAdmin() or $user->isHost($event->id) or $user->isStaff($event->id);
     }
 
     /**

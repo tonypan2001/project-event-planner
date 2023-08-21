@@ -26,6 +26,7 @@ class EventController extends Controller
 
     public function storeEvent(Request $request,User $user) {
 //        dd($request->all());
+        $user = Auth::user(); //call user ...hello?
 
         $data = $request->validate([
             'name' => 'required|string|min:3|max:50',
@@ -37,7 +38,6 @@ class EventController extends Controller
             'property' => 'required|string|min:0|max:255|nullable',
             'image' => 'required|nullable|image|mimes:jpg,jpeg,png,gif|max:2048' // <-- my man just poison me >:<
         ]);
-
 
         if ($request->hasFile('image')) {
 //            $userId = $user->id;
@@ -121,7 +121,7 @@ class EventController extends Controller
     }
 
     public function edit(Event $event) {
-        Gate::authorize('view',[$event,Auth::user()]);
+        Gate::authorize('update',[$event,Auth::user()]);
         return view('event.edit');
     }
 

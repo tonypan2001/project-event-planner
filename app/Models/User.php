@@ -69,6 +69,7 @@ class User extends Authenticatable
         {
             return $this->events->where('id', $id)->first()->pivot->role === 'STAFF' ;
         }
+        return false;
     }
 
     public function isJoin(string $id) {
