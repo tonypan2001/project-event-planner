@@ -23,7 +23,19 @@
                     background: linear-gradient(130deg, rgba(150,1,218,1) 0%, rgba(112,0,255,1) 50%, rgba(112,0,255,1) 100%);">
                 <div class="flex flex-col justify-up items-center text-center text-white mt-12">
                     <h1 class="uppercase font-medium">My Account</h1>
-                    <div class="border-2 border-mypink-light shadow-lg rounded-full bg-white w-[64px] h-[64px] m-5" style="background-image: url('https://images.unsplash.com/photo-1553501136-cb06cbffa795?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'); background-repeat: no-repeat; background-size: cover; background-position: center;"></div>
+                    <div class="w-32 h-32 rounded-full bg-black my-4 border-2 border-mypink-light shadow-lg rounded-full"
+                         style="
+                     @if( Auth::user()->image_user_path !== null )
+                     background-image: url('{{ asset('storage/' . Auth::user()->image_user_path) }}');
+
+                     @else
+                     background-image: url('{{ asset('df_image/defaultProfile.jpg') }}');
+                     /*background-image: url('https://images.unsplash.com/photo-1553501136-cb06cbffa795?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');*/
+                     @endif
+                     background-repeat: no-repeat;
+                     background-size: cover;
+                     background-position: center;">
+                    </div>
                     <p class="text-base font-normal">{{ Auth::user()->fullname}}</p>
                     <div class="border-b border-white w-40 mt-4 mb-3"></div>
                     <!-- NAVIGATE BUTTON -->
