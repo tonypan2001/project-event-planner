@@ -10,7 +10,7 @@ class Gallery extends Model
 {
     use HasFactory;
     // protected $table = 'gallery';
-    protected $fillable = ['note','gallery_image_path'];
+    protected $fillable = ['note','gallery_image_path','user_id'];
 
     // Delete Image File Fron storage
     public function deleteGalleryImage() {
