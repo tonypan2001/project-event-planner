@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\DB;
 
 class EventController extends Controller
@@ -65,10 +66,12 @@ class EventController extends Controller
     }
 
     public function editEvent(Event $event) {
+        Gate::authorize('update', Event::class);
         return view('event.edit', ['event' => $event]);
     }
 
     public function updateEvent(Event $event, Request $request) {
+        Gate::authorize('update', [$event,Auth::user()]);
         $data = $request->validate([
             'name' => 'required|string|min:3|max:50',
             'date' => 'required|string|min:0|max:10',
@@ -95,6 +98,7 @@ class EventController extends Controller
     }
 
     public function destroyEvent(Event $event) {
+        Gate::authorize('delete',[$event,Auth::user()]);
         $event->deleteImage();
         $event->delete();
         return redirect(route('dashboard.index'))->with('Success', 'Event deleted successfully');
@@ -104,6 +108,7 @@ class EventController extends Controller
 
     public function manage(Event $event) {
         // $event->delete();
+        Gate::authorize('view',[$event,Auth::user()]);
         $attendees = $this->getAttendeeList($event);
         $staffs = $this->getStaffList($event);
         return view('event.manage', [
@@ -113,7 +118,8 @@ class EventController extends Controller
         ]);
     }
 
-    public function edit() {
+    public function edit(Event $event) {
+        Gate::authorize('view',[$event,Auth::user()]);
         return view('event.edit');
     }
 

@@ -40,7 +40,7 @@
                             </button>
                         </form
 
-                        <!-- if tasks count -->
+                        <-- if tasks count -->
                         @if ($whiteboards && count($whiteboards) > 0)
                         <div class="list-group list-group-flush m-4">
                             @foreach ($whiteboards as $whiteboard)

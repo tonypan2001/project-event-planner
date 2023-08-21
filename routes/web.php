@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CreateEventController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EditBudgetController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\NotificationController;
@@ -73,11 +74,16 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/event/{event}/manage/', [EventController::class, 'manage'])->name('event.manage');
         Route::delete('/event/{event}/manage/destroy', [EventController::class, 'destroyEvent'])->name('event.manage.destroy');
-        Route::get('/event/{event}/manage/edit/budget', [EventController::class, 'editBudget'])->name('event.editBudget');
+//        Route::get('/event/{event}/manage/edit/budget', [EventController::class, 'editBudget'])->name('event.editBudget');
         Route::get('/event/{event}/manage/edit/staff', [EventController::class, 'editStaff'])->name('event.editStaff');
         Route::post('/event/{event}/manage/edit/staff/store', [EventController::class, 'storeStaffEvent'])->name('event.storeStaffEvent');
 
-// Whiteboard
+        Route::get('/event/manage/edit-budget/{event}', [EditBudgetController::class, 'index'])->name('event.editBudget');
+        Route::delete('event/manage/edit-budget/{editBudget}/destroy', [EditBudgetController::class, 'destroy'])->name('event.editBudget.destroy');
+        // Route::post('/event/manage/edit/budget/{event}/update', [EditBudgetController::class, 'update'])->name('event.editBudget.update');
+        Route::post('/event/manage/edit-budget', [EditBudgetController::class, 'store'])->name('event.editBudget.store');
+
+        // Whiteboard
         Route::get('/event/{event}/whiteboard/', [WhiteboardController::class, 'index'])->name('event.whiteboard');
         Route::post('/event/whiteboard', [WhiteboardController::class, 'store'])->name('event.storeWhiteboard');
         Route::delete('/event/whiteboard/{whiteboard}/destroy', [WhiteboardController::class, 'destroy'])->name('event.destroyWhiteboard');
