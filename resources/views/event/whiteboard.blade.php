@@ -45,6 +45,20 @@
                         <div class="list-group list-group-flush m-4">
                             @foreach ($whiteboards as $whiteboard)
                                 <div class="shadow-sm border-2 rounded-lg py-4 flex flex-col justify-center items-center my-2">
+                                    <form method="POST" action="{{route('event.updateStatus', $whiteboard->id)}}" class="w-full">
+                                        @csrf
+                                        @method('put') {{-- or @method('patch') --}}
+                                        <div class="flex justify-start mx-4 text-lg font-bold">
+                                            <div class="flex flex-row justify-center items-center font-semibold">
+                                                Status: {{ $whiteboard->status }}
+                                                @if ($whiteboard->status === "Not Done Yet")
+                                                    <button type="submit" class="bg-green-500 text-white py-0.5 px-4 m-3 flex justify-center items-center text-lg rounded-full">
+                                                        Check!
+                                                    </button>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </form>
                                     <form method="POST" action="{{ route('event.destroyWhiteboard', $whiteboard->id) }}" class="flex flex-col items-center justify-center">
                                         @csrf
                                         @method('delete') {{-- or @method('patch') --}}
@@ -70,18 +84,7 @@
                                         </button>
                                         @endif
                                     </form>
-                                    <form method="POST" action="{{route('event.updateStatus', $whiteboard->id)}}" class="ml-3">
-                                        @csrf
-                                        @method('put') {{-- or @method('patch') --}}
-                                        <div class="flex flex-row justify-center items-center font-medium">
-                                            Status: {{ $whiteboard->status }}
-                                            @if ($whiteboard->status === "Not Done Yet")
-                                                <button type="submit" class="bg-green-400 py-1.5 px-4 m-3 text-white flex justify-center items-center text-sm rounded-full">
-                                                    Check!
-                                                </button>
-                                            @endif
-                                        </div>
-                                    </form>
+
                                 </div>
                             @endforeach
                         </div>

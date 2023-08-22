@@ -135,7 +135,7 @@ class EventController extends Controller
     public function editStaff(Event $event) {
         $staffList = $this->getStaffList($event);
         $attendeeList = $this->getAttendeeList($event);
-        $UserStaffEventMixs = $this->getUserStaffEventMix();
+        $UserStaffEventMixs = $this->getUserStaffEventMix($event->id);
         return view('event.editStaff', [
             'event' => $event,
             'attendeeList' => $attendeeList,
@@ -171,15 +171,21 @@ class EventController extends Controller
 //        $user->events()->attach($newEvent->event_id ,[
 //            'role' => 'STAFF'
 //        ]);
-        $staffList = $this->getStaffList($event);
-        $attendeeList = $this->getAttendeeList($event);
-        $UserStaffEventMixs = $this->getUserStaffEventMix();
-        return view('event.editStaff', [
+        $attendees = $this->getAttendeeList($event);
+        $staffs = $this->getStaffList($event);
+        $staffsRole = $this->getUserStaffEventRoleMix($event);
+        return view('event.manage', [
             'event' => $event,
-            'attendeeList' => $attendeeList,
-            'staffList' => $staffList,
-            'UserStaffEventMixs' => $UserStaffEventMixs
+            'attendees' => $attendees,
+            'staffs' => $staffs,
+            'staffsRole' => $staffsRole
         ]);
+//        return view('event.editStaff', [
+//            'event' => $event,
+//            'attendeeList' => $attendeeList,
+//            'staffList' => $staffList,
+//            'UserStaffEventMixs' => $UserStaffEventMixs
+//        ]);
     }
 
     public function getUserStaffEventRoleMix(Event $event) {
@@ -201,13 +207,14 @@ class EventController extends Controller
             ->get();
     }
 
-    public function getUserStaffEventMix() {
+    public function getUserStaffEventMix($event) {
         return DB::table('event_user')
             ->join('users', 'event_user.user_id', '=', 'users.id')
             ->join('event_staff', function ($join) {
                 $join->on('event_user.event_id', '=', 'event_staff.event_id')
                     ->on('event_user.user_id', '=', 'event_staff.user_id');
             })
+            ->where('event_staff.event_id', $event)
             ->get();
     }
 
