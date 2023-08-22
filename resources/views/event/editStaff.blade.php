@@ -23,18 +23,19 @@
                         <h1 class="text-2xl font-medium text-center text-black">All Staffs</h1>
                         <div class="border-b border-gray-400 mt-4"></div>
                         <div class="mx-6 my-4 flex flex-col">
-                            <table class="table-auto w-full mt-2">
+                            <table class="border-separate border-spacing-3 border border-slate-400 table-auto rounded-lg w-full bg-gray-200">
                                 <thead>
                                 <tr>
-                                    <th>Full Name</th>
-                                    <th>Assignment</th>
+                                    <th class="border border-slate-300 rounded-lg p-2 bg-gray-100">Attendees Name</th>
+                                    <th class="border border-slate-300 rounded-lg p-2 bg-gray-100">Age</th>
+                                    {{-- <th class="border border-slate-300 rounded-lg">Remove</th> --}}
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach ($UserStaffEventMixs as $UserStaffEventMix)
                                     <tr>
-                                        <td class="border px-4 py-2">{{ $UserStaffEventMix->fullname }}</td>
-                                        <td class="border px-4 py-2">{{ $UserStaffEventMix->assignment }}</td>
+                                        <td class="border px-4 py-1 rounded-lg bg-gray-100">{{ $UserStaffEventMix->fullname }}</td>
+                                        <td class="border px-4 py-1 rounded-lg bg-gray-100">{{ $UserStaffEventMix->assignment }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

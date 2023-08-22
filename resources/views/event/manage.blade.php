@@ -78,11 +78,20 @@
                         <div class="w-full rounded shadow-lg my-2 border bg-zinc-300 p-4 text-center">
                             <p class="w-full mb-2 text-xl font-medium font-extrabold">Attendees List</p>
                             @if ($attendees->count() > 0)
-                                <table class="table-auto w-full mt-2">
+                                <table class="border-separate border-spacing-3 border border-slate-400 table-auto rounded-lg w-full bg-gray-200">
+                                    <thead>
+                                    <tr>
+                                        <th class="border border-slate-300 rounded-lg p-2 bg-gray-100">Attendees Name</th>
+                                        <th class="border border-slate-300 rounded-lg p-2 bg-gray-100">Age</th>
+                                        {{-- <th class="border border-slate-300 rounded-lg">Remove</th> --}}
+                                    </tr>
+                                    </thead>
                                     <tbody>
                                     @foreach ($attendees as $attendee)
                                         <tr>
-                                            <td class="border px-4 py-2">{{ $attendee->fullname }}</td>
+                                            <td class="border px-4 py-1 rounded-lg bg-gray-100">{{ $attendee->fullname }}</td>
+                                            {{-- If you want the 'assignment' data from the corresponding staffsRole, you can access it by index --}}
+                                            <td class="border px-4 py-1 rounded-lg bg-gray-100">{{ $attendee->age }}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -104,16 +113,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($staffs as $staff)
+                                    @foreach ($staffs as $index => $staff)
                                         <tr>
-                                            <td class="border px-4 py-1 rounded-lg bg-gray-100">{{$staff->fullname}}</td>
-                                            {{-- <td class="border px-4 py-2">{{ $staff->assignment }}</td> --}}
-                                            @foreach ($staffsRole as $staff)
-                                            <td class="border px-4 py-1 rounded-lg bg-gray-100">{{$staff->assignment}}</td>
-                                            @endforeach
-                                    @endforeach
+                                            <td class="border px-4 py-1 rounded-lg bg-gray-100">{{ $staff->fullname }}</td>
+                                            {{-- If you want the 'assignment' data from the corresponding staffsRole, you can access it by index --}}
+                                            <td class="border px-4 py-1 rounded-lg bg-gray-100">{{ $staffsRole[$index]->assignment }}</td>
                                         </tr>
+                                    @endforeach
                                     </tbody>
+
                                 </table>
                             @else
                                 <p class="text-gray-600">No Staff</p>

@@ -124,7 +124,7 @@
                         <div class="w-full m-5 flex flex-col justify-between items-center">
                           <div class="flex flex-row justify-center items-center">
                             <p class="text-base text-gray-600 w-12">Status:</p>
-                              @if(Auth::user()->isAdmin()))
+                              @if(Auth::user()->isAdmin())
                                   <div class="rounded-full w-4 h-4 ml-1 flex items-center"> <p class="text-blue-800">ADMIN</p> </div>
                               @elseif(Auth::user()->isHost($event->id))
                                   <div class="rounded-full w-4 h-4 ml-1 flex items-center"> <p class="text-blue-800">HOST</p> </div>
