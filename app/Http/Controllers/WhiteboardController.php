@@ -64,6 +64,19 @@ class WhiteboardController extends Controller
         return redirect()->back()->with('success', 'Whiteboard entry added successfully.');
     }
 
+    public function updateStatus(Request $request, Whiteboard $whiteboard)
+    {
+        // Validate the request data if needed
+
+        // Update the whiteboard status
+        $whiteboard->update([
+            'status' => 'Done', // Update the status to 'Done!' here
+        ]);
+
+        return redirect()->back()->with('success', 'Whiteboard status updated to Done!');
+}
+
+
 
     /**
      * Display the specified resource.

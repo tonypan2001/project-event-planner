@@ -113,10 +113,13 @@ class EventController extends Controller
         Gate::authorize('view',[$event,Auth::user()]);
         $attendees = $this->getAttendeeList($event);
         $staffs = $this->getStaffList($event);
+        $staffsRole = $this->getUserStaffEventRoleMix($event);
+        // return $staffsRole;
         return view('event.manage', [
             'event' => $event,
             'attendees' => $attendees,
-            'staffs' => $staffs
+            'staffs' => $staffs,
+            'staffsRole' => $staffsRole
         ]);
     }
 
@@ -177,6 +180,16 @@ class EventController extends Controller
             'staffList' => $staffList,
             'UserStaffEventMixs' => $UserStaffEventMixs
         ]);
+    }
+
+    public function getUserStaffEventRoleMix(Event $event) {
+        return DB::table('event_user')
+            ->join('users', 'event_user.user_id', '=', 'users.id')
+            ->join('event_staff', function ($join) use ($event) {
+                $join->on('event_user.event_id', '=', 'event_staff.event_id')
+                    ->on('event_user.user_id', '=', 'event_staff.user_id');
+            })
+            ->get();
     }
 
     public function getStaffList(Event $event) {

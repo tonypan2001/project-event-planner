@@ -90,6 +90,8 @@ Route::middleware(['auth'])->group(function () {
     // Whiteboard
     Route::get('/event/{event}/whiteboard/', [WhiteboardController::class, 'index'])->name('event.whiteboard');
     Route::post('/event/whiteboard', [WhiteboardController::class, 'store'])->name('event.storeWhiteboard');
+    Route::put('/whiteboards/{whiteboard}/update-status', [WhiteboardController::class, 'updateStatus'])
+    ->name('event.updateStatus');
     Route::delete('/event/whiteboard/{whiteboard}/destroy', [WhiteboardController::class, 'destroy'])->name('event.destroyWhiteboard');
 
 });

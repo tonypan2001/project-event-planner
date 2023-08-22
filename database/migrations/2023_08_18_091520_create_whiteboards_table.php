@@ -17,6 +17,7 @@ return new class extends Migration
             // $table->foreignIdFor(Event::class);
             $table->string('content');
             $table->string('detail');
+            $table->string('status')->default('Not Done Yet');
             $table->timestamps(); 
 
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
