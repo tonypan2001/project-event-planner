@@ -38,18 +38,36 @@
                     <!-- END -->
                 <!-- fullname -->
                 <div class="w-2/4">
-                    <label for="fullname" >Fullname</label>
-                    <input type="text" id="fullname" name="fullname" autocomplete = "off"
-                    class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2"
-                    value="{{$user->fullname}}"
-                    placeholder="Put in fullname" >
+                <label for="fullname">Fullname</label>
+                <input type="text" id="fullname" name="fullname" autocomplete="off"
+                        class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2"
+                        value="{{ old('fullname', $user->fullname) }}"
+                        placeholder="Put in fullname">
+                        @error('fullname')
+                <p class="text-red-500">{{ $message }}</p>
+                        @enderror
                 </div>
-                <!-- phone_num -->
+
                 <div class="w-2/4">
-                    <label for="phone_num" >Phone number</label>
-                    <input type="text" id="phone_num" name="phone_num" autocomplete = "off"
-                    value="{{$user->phone_num}}"
-                    placeholder="Put in phone_num" class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
+                <label for="phone_num">Phone number</label>
+                <input type="text" id="phone_num" name="phone_num" autocomplete="off"
+                        value="{{ old('phone_num', $user->phone_num) }}"
+                        placeholder="Put in phone_num"
+                        class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
+                        @error('phone_num')
+                <p class="text-red-500">{{ $message }}</p>
+                        @enderror
+                </div>
+
+                <div class="w-2/4">
+                <label for="age">Age</label>
+                <input type="text" id="age" name="age" autocomplete="off"
+                        value="{{ old('age', $user->age) }}"
+                        placeholder="Put in Age"
+                        class="bg-gray-50 border border-gray-400 py-1 px-2 text-gray-900 rounded-xl w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2">
+                        @error('age')
+                <p class="text-red-500">{{ $message }}</p>
+                        @enderror
                 </div>
                 <div class="py-2"></div>
 
