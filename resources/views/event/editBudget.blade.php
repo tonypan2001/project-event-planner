@@ -44,27 +44,52 @@
                 </div>
             </form>
 
-            @if ($editBudgets->count() > 0)
-            @foreach ($editBudgets as $editBudget)
             <div class="w-full flex justify-center items-center border-b rounded-md mt-2">
                 <div class="w-full flex flex-row justify-center items-center py-2">
-                    <p class="mr-2 text-lg">Item : {{$editBudget->item}} |</p>
-                    <p class="mr-2 text-lg">Price : ฿{{number_format($editBudget->price)}} THB |</p>
-                    <form action="{{route('event.editBudget.destroy', ['editBudget' => $editBudget->id])}}" method="POST">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="flex flex-row justify-center items-center text-mypink-light hover:text-mypink-dark">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash mr-1" viewBox="0 0 16 16">
-                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
-                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
-                            </svg>
-                            Remove
-                        </button>
-                    </form>
+                    <!-- Table Start -->
+                    <table class="border-separate border-spacing-3 border border-slate-400 table-auto rounded-lg w-full">
+                        <thead>
+                            <tr>
+                                <th class="border border-slate-300 rounded-lg p-2 bg-gray-200">Item</th>
+                                <th class="border border-slate-300 rounded-lg p-2 bg-gray-200">Price</th>
+                                {{-- <th class="border border-slate-300 rounded-lg">Remove</th> --}}
+                            </tr>
+                        </thead>
+                        @if ($editBudgets->count() > 0)
+                        @foreach ($editBudgets as $editBudget)
+                        <tbody>
+                          <tr>
+                            <td class="w-2/3 text-md border border-slate-300 rounded-lg p-2">
+                                <p>
+                                    {{$editBudget->item}}
+                                </p>
+                            </td>
+                            <td class="w-1/3 text-md border border-slate-300 rounded-lg text-end p-2">
+                                <p>
+                                    ฿{{number_format($editBudget->price)}} THB
+                                </p>
+                            </td>
+                            <td class="w-1/3 text-md font-bold">
+                                <form method="POST" action="{{route('event.editBudget.destroy', ['editBudget' => $editBudget->id])}}">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" onclick="return confirm('Are you sure you want to remove this item?')" class="flex flex-row justify-center items-center text-mypink-light hover:text-mypink-dark">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash mr-1" viewBox="0 0 16 16">
+                                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+                                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+                                        </svg>
+                                        Remove
+                                    </button> 
+                                </form>
+                            </td>
+                          </tr>
+                          @endforeach
+                          @endif
+                        </tbody>
+                      </table>
+                      <!-- Table End -->
                 </div>
             </div>
-            @endforeach
-            @endif
 
             <div class="grid grid-cols-3 gap-4 content-center w-full mb-5 mx-6 mt-5">
                 <a href="{{ route('event.manage', ['event' => $event]) }}" class="col-span-1 justify-self-start">< Back</a>
