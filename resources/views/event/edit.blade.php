@@ -37,6 +37,9 @@
                                         </svg>
                                     </div>
                                     <input value="{{$event->date}}" name="date" datepicker datepicker-title="Choose Your Date" type="text" class="bg-gray-50 border border-gray-400 text-gray-900 rounded-xl focus:ring-mypink-light focus:border-none focus:border-mypink-light focus:ring-2 block w-full h-12 pl-10 p-2.5" placeholder="Select date">
+                                    @error('date')
+                                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                                @enderror
                                 </div>
                             </div>
                         </div>

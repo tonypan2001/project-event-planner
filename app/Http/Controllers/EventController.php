@@ -30,7 +30,7 @@ class EventController extends Controller
 
         $data = $request->validate([
             'name' => 'required|string|min:3|max:50',
-            'date' => 'required|string|min:0|max:10',
+            'date' => 'required|date|after_or_equal:tomorrow',
             'hour' => 'required|string|min:0|max:2',
             'minute' => 'required|string|min:0|max:2',
             'timeType' => 'required|in:AM,PM',
@@ -76,7 +76,7 @@ class EventController extends Controller
         Gate::authorize('update', [$event,Auth::user()]);
         $data = $request->validate([
             'name' => 'required|string|min:3|max:50',
-            'date' => 'required|string|min:0|max:10',
+            'date' => 'required|date|after_or_equal:tomorrow',
             'hour' => 'required|string|min:0|max:2',
             'minute' => 'required|string|min:0|max:2',
             'timeType' => 'required|string',
