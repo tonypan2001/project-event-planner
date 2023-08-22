@@ -26,6 +26,7 @@
                           @csrf
                             <div>
                             <div>
+                            <label >Fullname</label>
                             <x-text-input id="fullname"
                                           class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2"
                                           name="fullname" type="text" :value="old('fullname')"
@@ -33,6 +34,7 @@
                             />
                             <x-input-error :messages="$errors->get('fullname')" class="mt-2" />
                         </div><div>
+                        <label >Username</label>
                             <x-text-input id="username"
                                           class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2"
                                           name="username" type="text" :value="old('username')"
@@ -40,6 +42,7 @@
                             />
                             <x-input-error :messages="$errors->get('username')" class="mt-2" />
                         </div><div>
+                        <label >Email</label>
                             <x-text-input id="email"
                                           class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2"
                                           name="email" type="email" :value="old('email')"
@@ -47,6 +50,7 @@
                             />
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div><div>
+                            <label >Phone number</label>
                             <x-text-input id="phone_num"
                                           class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2"
                                           name="phone_num" type="text" :value="old('phone_num')"
@@ -54,6 +58,7 @@
                             />
                             <x-input-error :messages="$errors->get('phone_num')" class="mt-2" />
                         </div><div>
+                        <label >Password</label>
                             <x-text-input id="password"
                                           class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2"
                                           name="password" type="password" 
@@ -61,6 +66,7 @@
                             />
                             <x-input-error :messages="$errors->get('password')" class="mt-2" />
                         </div><div>
+                        <label >Password Confirmation</label>
                             <x-text-input id="password_confirmation"
                                           class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2"
                                           name="password_confirmation" type="password" 
@@ -68,6 +74,7 @@
                             />
                             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                         </div><div>
+                        <label >Age</label>
                             <x-text-input id="age"
                                           class="border border-gray-400 py-1 px-2 rounded w-full h-12 my-2 focus:border-none focus:ring-mypink-light focus:ring-2"
                                           name="age" type="text" :value="old('age')"

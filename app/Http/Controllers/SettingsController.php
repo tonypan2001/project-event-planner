@@ -23,9 +23,11 @@ class SettingsController extends Controller
     public function update(User $user, Request $request) {
         $data = $request->validate([
             'fullname' => 'required|string|min:3|max:255',
-            'phone_num' => 'required|string|min:0|max:10',
-            'image' => '|image|mimes:jpg,jpeg,png,gif|max:2048'
+            'phone_num' => 'required|digits:10|numeric',
+            'image' => '|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'age' => 'required|required|integer|between:1,100'
         ]);
+        // return $data;
 
         if ($request->hasFile('image')) {
             $imageName = $request->file('image')->getClientOriginalName();
